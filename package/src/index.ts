@@ -52,7 +52,7 @@ export * from "./components/tooltip"
 
 // Hooks
 export { useToast } from "./hooks/use-toast"
-export { useMobile } from "./hooks/use-mobile"
+export { useIsMobile } from "./hooks/use-mobile"
 
 // Version
 export const VERSION = "1.0.0"

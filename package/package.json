@@ -9,20 +9,20 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.cjs"
     },
     "./styles": "./dist/styles/globals.css",
     "./components/*": {
+      "types": "./dist/components/*.d.ts",
       "import": "./dist/components/*.js",
-      "require": "./dist/components/*.cjs",
-      "types": "./dist/components/*.d.ts"
+      "require": "./dist/components/*.cjs"
     },
     "./lib/utils": {
+      "types": "./dist/lib/utils.d.ts",
       "import": "./dist/lib/utils.js",
-      "require": "./dist/lib/utils.cjs",
-      "types": "./dist/lib/utils.d.ts"
+      "require": "./dist/lib/utils.cjs"
     }
   },
   "files": [
