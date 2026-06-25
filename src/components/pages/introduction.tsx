@@ -1,16 +1,12 @@
 "use client"
-
 import { ArrowRight, Github, Sparkles } from "lucide-react"
 import { DocPage, DocSection, P, InlineCode, Callout } from "@/components/docs/doc-page"
 import { CodeBlock } from "@/components/docs/code-block"
 import { ComponentPreview } from "@/components/docs/component-preview"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-
 const installCode = `npm install @journal-ds/react`
-
 const usageCode = `import { Button } from "@journal-ds/react"
-
 export default function App() {
   return (
     <Button variant="outline">
@@ -18,7 +14,6 @@ export default function App() {
     </Button>
   )
 }`
-
 export function IntroductionPage() {
   return (
     <DocPage
@@ -34,7 +29,6 @@ export function IntroductionPage() {
         publishing. You copy the source code into your project, which means
         you have full ownership and can customize every detail.
       </P>
-
       <P>
         The result is a design system that&apos;s accessible, themeable, and
         composable — without the bloat of a runtime dependency on a
@@ -45,13 +39,11 @@ export function IntroductionPage() {
         <InlineCode>Lora</InlineCode> for body text — a serif pairing tuned
         for long-form reading.
       </P>
-
       <Callout type="tip" title="TL;DR">
         Journal DS is a set of <strong>open source</strong> components you
         copy into your project. There&apos;s no runtime dependency. You own
         the code, and you can customize every detail.
       </Callout>
-
       <DocSection title="Philosophy">
         <P>
           We believe that great design systems should not require you to give
@@ -73,7 +65,6 @@ export function IntroductionPage() {
           and screen reader support all work out of the box.
         </P>
       </DocSection>
-
       <DocSection title="Quick start">
         <P>
           Install the package and import any component you need:
@@ -90,7 +81,6 @@ export function IntroductionPage() {
           className="my-4"
         />
       </DocSection>
-
       <DocSection title="A taste of what you get">
         <P>
           Here&apos;s a quick preview of the <InlineCode>Button</InlineCode>{" "}
@@ -112,7 +102,6 @@ export function IntroductionPage() {
           <Button variant="destructive">Destructive</Button>
         </ComponentPreview>
       </DocSection>
-
       <DocSection title="What&apos;s included">
         <P>
           Journal DS ships with 47+ components across the following
@@ -127,13 +116,12 @@ export function IntroductionPage() {
           <li><strong>Feedback</strong> — Toast, Sonner, Calendar, Carousel, Chart, Sidebar.</li>
         </ul>
       </DocSection>
-
       <DocSection title="Open Source">
         <P>
           Journal DS is <InlineCode>MIT</InlineCode> licensed and free
           forever. The source code is available on{" "}
           <a
-            href="https://github.com/journal-ds/react"
+            href="https://github.com/archaeanic/journal-ds"
             target="_blank"
             rel="noopener noreferrer"
             className="font-medium text-journal-burgundy underline underline-offset-4"
@@ -152,7 +140,7 @@ export function IntroductionPage() {
           </Button>
           <Button asChild variant="outline">
             <a
-              href="https://github.com/journal-ds/react"
+              href="https://github.com/archaeanic/journal-ds"
               target="_blank"
               rel="noopener noreferrer"
             >

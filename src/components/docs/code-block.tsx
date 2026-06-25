@@ -1,16 +1,13 @@
 "use client"
-
 import * as React from "react"
 import { Check, Copy } from "lucide-react"
 import { cn } from "@/lib/utils"
-
 type CodeBlockProps = {
   code: string
   language?: string
   filename?: string
   className?: string
 }
-
 /**
  * CodeBlock styled to match the Journal design system:
  * ink-colored background, sepia text, paper-dark filename bar,
@@ -23,7 +20,6 @@ export function CodeBlock({
   className,
 }: CodeBlockProps) {
   const [copied, setCopied] = React.useState(false)
-
   const copy = React.useCallback(async () => {
     try {
       await navigator.clipboard.writeText(code)
@@ -40,7 +36,6 @@ export function CodeBlock({
       setTimeout(() => setCopied(false), 1500)
     }
   }, [code])
-
   return (
     <div
       className={cn(
@@ -74,7 +69,6 @@ export function CodeBlock({
     </div>
   )
 }
-
 function SyntaxHighlight({ code, language }: { code: string; language: string }) {
   const html = React.useMemo(() => highlight(code, language), [code, language])
   return (
@@ -83,7 +77,6 @@ function SyntaxHighlight({ code, language }: { code: string; language: string })
     </pre>
   )
 }
-
 function escapeHtml(s: string): string {
   return s
     .replace(/&/g, "&amp;")
@@ -92,7 +85,6 @@ function escapeHtml(s: string): string {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;")
 }
-
 function highlight(code: string, language: string): string {
   if (language === "bash" || language === "sh") {
     const escaped = escapeHtml(code)
@@ -100,33 +92,25 @@ function highlight(code: string, language: string): string {
       .replace(/(^|\n)(\$ )/g, '$1<span class="tok-comment">$2</span>')
       .replace(/(\bnpm\b|\bnpx\b|\bpnpm\b|\byarn\b|\bbun\b|\bgit\b|\bnode\b)/g, '<span class="tok-keyword">$1</span>')
   }
-
   let out = escapeHtml(code)
-
   out = out.replace(/(\/\/[^\n]*)/g, '<span class="tok-comment">$1</span>')
   out = out.replace(/(\/\*[\s\S]*?\*\/)/g, '<span class="tok-comment">$1</span>')
-
   out = out.replace(
     /(&quot;[^&]*?&quot;|&#39;[^&]*?&#39;|`[^`]*?`)/g,
     '<span class="tok-string">$1</span>'
   )
-
   out = out.replace(
     /(&lt;\/?)([A-Za-z][\w.-]*)/g,
     '$1<span class="tok-tag">$2</span>'
   )
-
   out = out.replace(
-    /\b(import|from|export|default|const|let|var|function|return|if|else|for|while|class|extends|implements|interface|type|enum|public|private|protected|readonly|static|async|await|new|this|null|undefined|true|false|void|never|unknown|any|string|number|boolean|React|useState|useEffect|useRef|useMemo|useCallback)\b/g,
+    /\b(import|from|export|default|const|let|var|function|return|if|else|for|while|class|extends|implements|interface|type|enum|public|private|protected|readonly|static|async|await|new|this|null|undefined|true|false|void|never|unknown|any|string|number|boolean|React|useState|useEffect|useRef|useMemo|useCallback)\b(?![^<>]*>)/g,
     '<span class="tok-keyword">$1</span>'
   )
-
   out = out.replace(/\b(\d+(?:\.\d+)?)\b/g, '<span class="tok-number">$1</span>')
-
   out = out.replace(
     /\b([a-zA-Z_$][\w$]*)(?=\()/g,
     '<span class="tok-fn">$1</span>'
   )
-
   return out
 }

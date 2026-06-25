@@ -1,5 +1,4 @@
 "use client"
-
 import * as React from "react"
 import { Terminal, Package } from "lucide-react"
 import { DocPage, DocSection, P, InlineCode, Callout } from "@/components/docs/doc-page"
@@ -8,7 +7,6 @@ import { ComponentPreview } from "@/components/docs/component-preview"
 import { PropTable, type PropRow } from "@/components/docs/prop-table"
 import { InstallCommand } from "@/components/docs/install-command"
 import { cn } from "@/lib/utils"
-
 export type ExampleBlock = {
   title?: string
   /** The JSX preview element */
@@ -16,7 +14,6 @@ export type ExampleBlock = {
   /** The source code shown in the Code tab */
   code: string
 }
-
 export type ComponentDocConfig = {
   title: string
   description: string
@@ -41,7 +38,6 @@ export type ComponentDocConfig = {
   /** Optional "see also" links */
   seeAlso?: { title: string; href: string }[]
 }
-
 export function ComponentDocPage(config: ComponentDocConfig) {
   const componentName = config.title.replace(/[^A-Za-z]/g, "").replace(/^./, (c) => c.toUpperCase())
   const cliCommand = config.installCode ?? `npx @journal-ds/cli add ${config.slug}`
@@ -49,7 +45,6 @@ export function ComponentDocPage(config: ComponentDocConfig) {
   const importCode =
     config.importCode ??
     `import { ${componentName} } from "@journal-ds/react"`
-
   return (
     <DocPage title={config.title} description={config.description}>
       {/* Intro */}
@@ -58,7 +53,6 @@ export function ComponentDocPage(config: ComponentDocConfig) {
           {config.intro}
         </div>
       )}
-
       {/* Install */}
       <DocSection title="Installation">
         <P>
@@ -67,13 +61,11 @@ export function ComponentDocPage(config: ComponentDocConfig) {
           folder — you own the code and can customize every line.
         </P>
         <InstallCommand command={cliCommand} />
-
-        <P className="mt-6">
+        <p className="mt-6">
           Prefer the npm package? Install it and import directly:
-        </P>
+        </p>
         <CodeBlock code={npmCommand} language="bash" className="my-4" />
         <CodeBlock code={importCode} language="tsx" className="my-4" />
-
         <Callout type="note" title="Don't have a journal.json yet?">
           Run <InlineCode>npx @journal-ds/cli init</InlineCode> first to set up
           your path aliases and theme. See the{" "}
@@ -83,19 +75,16 @@ export function ComponentDocPage(config: ComponentDocConfig) {
           for details.
         </Callout>
       </DocSection>
-
       {/* Primary preview */}
       <DocSection title="Preview">
         <ComponentPreview code={config.primary.code}>
           {config.primary.preview}
         </ComponentPreview>
       </DocSection>
-
       {/* Usage */}
       <DocSection title="Usage">
         <CodeBlock
           code={`import { ${componentName} } from "@journal-ds/react"
-
 export default function Example() {
   return (
     ${primaryCodeSnippet(config.primary.code, componentName)}
@@ -105,7 +94,6 @@ export default function Example() {
           className="my-4"
         />
       </DocSection>
-
       {/* Examples */}
       {config.examples && config.examples.length > 0 && (
         <DocSection title="Examples">
@@ -121,7 +109,6 @@ export default function Example() {
           ))}
         </DocSection>
       )}
-
       {/* API */}
       {config.props && config.props.length > 0 && (
         <DocSection title="API Reference">
@@ -132,10 +119,8 @@ export default function Example() {
           <PropTable rows={config.props} />
         </DocSection>
       )}
-
       {/* Custom API content */}
       {config.api}
-
       {/* See also */}
       {config.seeAlso && config.seeAlso.length > 0 && (
         <DocSection title="See Also">
@@ -153,7 +138,6 @@ export default function Example() {
           </ul>
         </DocSection>
       )}
-
       <Callout type="tip" title="Need help?">
         If you run into issues, check the{" "}
         <a
@@ -169,7 +153,6 @@ export default function Example() {
     </DocPage>
   )
 }
-
 /**
  * Extract a clean first-line snippet from the preview code for the Usage example.
  * Falls back to a self-closing tag if the code doesn't start with JSX.

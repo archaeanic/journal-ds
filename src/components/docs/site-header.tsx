@@ -1,5 +1,4 @@
 "use client"
-
 import * as React from "react"
 import { Menu, Search, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -8,11 +7,9 @@ import { ThemeToggle } from "./theme-toggle"
 import { Sidebar } from "./sidebar"
 import { SearchDialog } from "./search-dialog"
 import Link from "next/link"
-
 export function SiteHeader() {
   const [navOpen, setNavOpen] = React.useState(false)
   const [searchOpen, setSearchOpen] = React.useState(false)
-
   return (
     <header className="sticky top-0 z-50 w-full border-b border-journal-rule bg-journal-paper/85 backdrop-blur supports-[backdrop-filter]:bg-journal-paper/70">
       <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
@@ -34,7 +31,6 @@ export function SiteHeader() {
             <Sidebar onNavigate={() => setNavOpen(false)} />
           </SheetContent>
         </Sheet>
-
         {/* Logo + brand */}
         <Link href="/" className="flex items-center gap-3 group">
           <JournalLogo className="size-8 text-journal-burgundy transition-transform group-hover:rotate-3" />
@@ -47,7 +43,6 @@ export function SiteHeader() {
             </span>
           </div>
         </Link>
-
         <div className="ml-auto flex items-center gap-1">
           {/* Search trigger — opens the dialog */}
           <Button
@@ -63,7 +58,6 @@ export function SiteHeader() {
               ⌘K
             </kbd>
           </Button>
-
           {/* Mobile search icon button */}
           <Button
             variant="ghost"
@@ -74,7 +68,6 @@ export function SiteHeader() {
           >
             <Search className="size-5" />
           </Button>
-
           <Button
             variant="ghost"
             size="icon"
@@ -83,21 +76,19 @@ export function SiteHeader() {
             className="text-journal-ink-light hover:text-journal-ink"
           >
             <a
-              href="https://github.com/journal-ds/react"
+              href="https://github.com/archaeanic/journal-ds"
               target="_blank"
               rel="noopener noreferrer"
             >
               <Github className="size-5" />
             </a>
           </Button>
-
           <ThemeToggle />
         </div>
       </div>
     </header>
   )
 }
-
 /**
  * A small journal-style mark: an open book on a circle.
  * Burgundy on paper. Renders crisp at any size.

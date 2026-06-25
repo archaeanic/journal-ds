@@ -1,5 +1,4 @@
 "use client"
-
 import * as React from "react"
 import {
   ArrowRight,
@@ -30,11 +29,8 @@ import {
 import { CodeBlock } from "@/components/docs/code-block"
 import { JournalLogo } from "@/components/docs/site-header"
 import { cn } from "@/lib/utils"
-
 const installCode = `npm install @journal-ds/react`
-
 const usageCode = `import { Button } from "@journal-ds/react"
-
 export default function Entry() {
   return (
     <Button variant="default">
@@ -42,11 +38,9 @@ export default function Entry() {
     </Button>
   )
 }`
-
 const cliCode = `npx @journal-ds/cli add button
 # or pick multiple components
 npx @journal-ds/cli add button card dialog`
-
 const themingCode = `:root {
   --journal-paper: #FDFAF5;
   --journal-ink: #2C1810;
@@ -56,7 +50,6 @@ const themingCode = `:root {
   --journal-sepia: #8B7355;
   --journal-rule: #D9CBBA;
 }`
-
 export function HomePage() {
   return (
     <div className="flex min-h-screen flex-col bg-journal-paper">
@@ -80,24 +73,20 @@ export function HomePage() {
             backgroundSize: "32px 32px",
           }}
         />
-
         <div className="mx-auto flex max-w-5xl flex-col items-center px-4 py-20 text-center md:py-28 lg:py-32">
           <p className="journal-eyebrow mb-5 text-journal-burgundy">
-            Open Source · MIT Licensed
+            Open Source · MIT Licensed · Archaeanic
           </p>
-
           <h1 className="font-serif text-5xl font-bold tracking-tight text-journal-ink leading-[1.05] md:text-6xl lg:text-7xl">
             Journal Design
             <br />
             <span className="text-journal-burgundy">System</span>
           </h1>
-
           <p className="mt-6 max-w-2xl font-serif text-lg md:text-xl leading-relaxed text-journal-ink-light">
             A warm, editorial component library for Tailwind CSS. Inspired by
             the art of journaling and print publishing — serif typography,
             paper textures, and thoughtful details. Built on Radix UI.
           </p>
-
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Button asChild size="lg" className="rounded-sm">
               <Link href="/docs/introduction">
@@ -113,7 +102,7 @@ export function HomePage() {
             </Button>
             <Button asChild size="lg" variant="ghost" className="rounded-sm text-journal-ink-light hover:text-journal-ink">
               <a
-                href="https://github.com/journal-ds/react"
+                href="https://github.com/archaeanic/journal-ds"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -122,7 +111,6 @@ export function HomePage() {
               </a>
             </Button>
           </div>
-
           {/* Stats — editorial byline style */}
           <div className="mt-12 grid grid-cols-3 gap-8 border-t border-journal-rule pt-8 max-w-2xl">
             <div>
@@ -140,7 +128,6 @@ export function HomePage() {
           </div>
         </div>
       </section>
-
       {/* Features — editorial cards */}
       <section className="border-b border-journal-rule">
         <div className="mx-auto max-w-5xl px-4 py-16 md:py-24">
@@ -153,7 +140,6 @@ export function HomePage() {
               Everything you need to build warm, readable, editorial-style apps.
             </p>
           </div>
-
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {features.map((f) => (
               <Card key={f.title} className="border-journal-rule bg-journal-paper/50 rounded-sm">
@@ -173,7 +159,6 @@ export function HomePage() {
           </div>
         </div>
       </section>
-
       {/* CLI section — two-column editorial */}
       <section className="border-b border-journal-rule bg-journal-paper-dark/40">
         <div className="mx-auto grid max-w-5xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
@@ -204,7 +189,6 @@ export function HomePage() {
           <CodeBlock code={cliCode} language="bash" />
         </div>
       </section>
-
       {/* Usage — sample with drop cap */}
       <section className="border-b border-journal-rule">
         <div className="mx-auto grid max-w-5xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
@@ -231,7 +215,6 @@ export function HomePage() {
           </div>
         </div>
       </section>
-
       {/* Theming preview — color palette */}
       <section className="border-b border-journal-rule">
         <div className="mx-auto max-w-5xl px-4 py-16 md:py-24">
@@ -246,7 +229,6 @@ export function HomePage() {
               Every color is a CSS variable — theme it once, apply it everywhere.
             </p>
           </div>
-
           <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6">
             {palette.map((c) => (
               <div key={c.name} className="text-center">
@@ -261,13 +243,11 @@ export function HomePage() {
               </div>
             ))}
           </div>
-
           <div className="mt-10">
             <CodeBlock code={themingCode} language="css" />
           </div>
         </div>
       </section>
-
       {/* Component showcase grid */}
       <section className="border-b border-journal-rule">
         <div className="mx-auto max-w-5xl px-4 py-16 md:py-24">
@@ -283,7 +263,6 @@ export function HomePage() {
               and a full API reference.
             </p>
           </div>
-
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
             {allComponents.map((c) => (
               <Link
@@ -302,7 +281,6 @@ export function HomePage() {
           </div>
         </div>
       </section>
-
       {/* Editorial pull quote */}
       <section className="border-b border-journal-rule bg-journal-paper-dark/30">
         <div className="mx-auto max-w-3xl px-4 py-16 md:py-20 text-center">
@@ -316,7 +294,6 @@ export function HomePage() {
           </p>
         </div>
       </section>
-
       {/* Footer CTA */}
       <section className="flex-1">
         <div className="mx-auto max-w-5xl px-4 py-16 md:py-24">
@@ -340,7 +317,7 @@ export function HomePage() {
                 </Button>
                 <Button asChild size="lg" variant="outline" className="rounded-sm border-journal-ink text-journal-ink hover:bg-journal-ink hover:text-journal-paper">
                   <a
-                    href="https://github.com/journal-ds/react"
+                    href="https://github.com/archaeanic/journal-ds"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -353,12 +330,10 @@ export function HomePage() {
           </Card>
         </div>
       </section>
-
       <SiteFooter />
     </div>
   )
 }
-
 const features = [
   {
     icon: BookOpen,
@@ -397,14 +372,12 @@ const features = [
       "First-class dark mode with a warm, low-contrast dark palette — like reading by candlelight.",
   },
 ]
-
 const cliBenefits = [
   "Zero runtime dependencies",
   "Full TypeScript support",
   "Customizable theming via CSS variables",
   "Tree-shakeable",
 ]
-
 const palette = [
   { name: "paper", hex: "#FDFAF5", className: "bg-journal-paper" },
   { name: "ink", hex: "#2C1810", className: "bg-journal-ink" },
@@ -419,7 +392,6 @@ const palette = [
   { name: "margin", hex: "#C9B99A", className: "bg-journal-margin" },
   { name: "paper-dark", hex: "#F0E6D3", className: "bg-journal-paper-dark" },
 ]
-
 import {
   Square,
   ListChecks,
@@ -447,7 +419,6 @@ import {
   Eye,
   Settings,
 } from "lucide-react"
-
 const allComponents: { title: string; path: string; icon: React.ComponentType<{ className?: string }> }[] = [
   { title: "Button", path: "/docs/button", icon: TypeIcon },
   { title: "Input", path: "/docs/input", icon: Pencil },
@@ -497,7 +468,6 @@ const allComponents: { title: string; path: string; icon: React.ComponentType<{ 
   { title: "Menubar", path: "/docs/menubar", icon: Menu },
   { title: "Sonner", path: "/docs/sonner", icon: Bell },
 ]
-
 export function SiteFooter() {
   return (
     <footer className="border-t border-journal-rule bg-journal-paper-dark/30">
@@ -505,7 +475,7 @@ export function SiteFooter() {
         <div className="flex items-center gap-3">
           <JournalLogo className="size-5 text-journal-burgundy" />
           <span className="font-serif text-sm text-journal-ink-light">
-            Built with care · MIT Licensed
+            Built with care · MIT Licensed · Copyright © 2026 Archaeanic
           </span>
         </div>
         <div className="flex items-center gap-6 font-serif text-sm text-journal-ink-light">
@@ -516,7 +486,7 @@ export function SiteFooter() {
             Changelog
           </Link>
           <a
-            href="https://github.com/journal-ds/react"
+            href="https://github.com/archaeanic/journal-ds"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-journal-burgundy"
