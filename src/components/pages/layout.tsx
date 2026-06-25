@@ -303,7 +303,7 @@ export function ScrollAreaPage() {
         preview: (
           <ScrollArea className="h-48 w-72 rounded-md border p-4">
             <p className="text-sm">
-              Lumen UI is built on top of Radix UI primitives and styled with Tailwind CSS.
+              Journal DS is built on top of Radix UI primitives and styled with Tailwind CSS.
             </p>
             <p className="mt-4 text-sm">
               The ScrollArea component augments native scroll functionality with
@@ -323,7 +323,7 @@ export function ScrollAreaPage() {
           </ScrollArea>
         ),
         code: `<ScrollArea className="h-48 w-72 rounded-md border p-4">
-  <p>Lumen UI is built on top of Radix UI...</p>
+  <p>Journal DS is built on top of Radix UI...</p>
 </ScrollArea>`,
       }}
       props={[

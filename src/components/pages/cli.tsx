@@ -3,16 +3,16 @@
 import { DocPage, DocSection, P, InlineCode, Callout } from "@/components/docs/doc-page"
 import { CodeBlock } from "@/components/docs/code-block"
 
-const initCode = `npx @lumen-ui/cli init`
+const initCode = `npx @journal-ds/cli init`
 
-const addCode = `npx @lumen-ui/cli add button`
+const addCode = `npx @journal-ds/cli add button`
 
-const addMultiple = `npx @lumen-ui/cli add button card dialog input label`
+const addMultiple = `npx @journal-ds/cli add button card dialog input label`
 
-const addAll = `npx @lumen-ui/cli add --all`
+const addAll = `npx @journal-ds/cli add --all`
 
 const configFile = `{
-  "$schema": "https://lumen-ui.dev/schema.json",
+  "$schema": "https://journal-ds.dev/schema.json",
   "style": "new-york",
   "rsc": true,
   "tsx": true,
@@ -40,12 +40,12 @@ export function CliPage() {
   return (
     <DocPage
       title="Components CLI"
-      description="Use the Lumen UI CLI to add components to your project. The source code is copied directly into your codebase, so you have full ownership."
+      description="Use the Journal DS CLI to add components to your project. The source code is copied directly into your codebase, so you have full ownership."
     >
       <P>
-        The Lumen UI CLI is a command-line tool that copies component source
+        The Journal DS CLI is a command-line tool that copies component source
         code directly into your project. This is the recommended way to use
-        Lumen UI — it gives you full ownership of the code, eliminates the
+        Journal DS — it gives you full ownership of the code, eliminates the
         runtime dependency, and makes customization trivial.
       </P>
 
@@ -58,16 +58,16 @@ export function CliPage() {
 
       <DocSection title="1. Initialize the CLI">
         <P>
-          Run the <InlineCode>init</InlineCode> command to set up the Lumen UI
+          Run the <InlineCode>init</InlineCode> command to set up the Journal DS
           configuration file in your project:
         </P>
         <CodeBlock code={initCode} language="bash" className="my-4" />
         <P>
           The CLI will ask you a few questions about your project setup —
           styling preferences, TypeScript aliases, base color, and so on — and
-          generate a <InlineCode>lumen.json</InlineCode> config file:
+          generate a <InlineCode>journal.json</InlineCode> config file:
         </P>
-        <CodeBlock code={configFile} language="json" className="my-4" filename="lumen.json" />
+        <CodeBlock code={configFile} language="json" className="my-4" filename="journal.json" />
       </DocSection>
 
       <DocSection title="2. Add components">
@@ -93,10 +93,10 @@ export function CliPage() {
         <ol className="ml-4 list-decimal space-y-1 text-muted-foreground">
           <li>
             Fetches the latest source code from the{" "}
-            <InlineCode>@lumen-ui/registry</InlineCode> package.
+            <InlineCode>@journal-ds/registry</InlineCode> package.
           </li>
           <li>
-            Resolves path aliases based on your <InlineCode>lumen.json</InlineCode>{" "}
+            Resolves path aliases based on your <InlineCode>journal.json</InlineCode>{" "}
             config.
           </li>
           <li>
@@ -153,18 +153,18 @@ export function CliPage() {
 
       <DocSection title="Styling variants">
         <P>
-          Lumen UI ships with two styling variants: <InlineCode>default</InlineCode>{" "}
+          Journal DS ships with two styling variants: <InlineCode>default</InlineCode>{" "}
           and <InlineCode>new-york</InlineCode>. The <InlineCode>new-york</InlineCode>{" "}
           style is more compact and uses smaller radii — it&apos;s what we use
           on this website. Set the <InlineCode>style</InlineCode> field in your{" "}
-          <InlineCode>lumen.json</InlineCode> to switch between them.
+          <InlineCode>journal.json</InlineCode> to switch between them.
         </P>
       </DocSection>
 
       <Callout type="tip" title="Programmatic usage">
         You can also use the CLI programmatically by importing from{" "}
-        <InlineCode>@lumen-ui/cli</InlineCode>. This is useful if you want to
-        build your own component registry tooling on top of Lumen UI.
+        <InlineCode>@journal-ds/cli</InlineCode>. This is useful if you want to
+        build your own component registry tooling on top of Journal DS.
       </Callout>
     </DocPage>
   )

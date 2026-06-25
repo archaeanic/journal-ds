@@ -95,7 +95,7 @@ export function DialogPage() {
                 </DialogDescription>
               </DialogHeader>
               <div className="flex items-center gap-2">
-                <Input id="link" defaultValue="https://lumen-ui.dev/docs/button" readOnly />
+                <Input id="link" defaultValue="https://journal-ds.dev/docs/button" readOnly />
                 <Button size="sm" className="px-3">
                   <Copy className="size-4" />
                 </Button>
@@ -402,7 +402,7 @@ export function HoverCardPage() {
         preview: (
           <HoverCard>
             <HoverCardTrigger asChild>
-              <button className="underline underline-offset-4">@lumen-ui</button>
+              <button className="underline underline-offset-4">@journal-ds</button>
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <div className="flex justify-between gap-4">
@@ -411,7 +411,7 @@ export function HoverCardPage() {
                   <AvatarFallback>LU</AvatarFallback>
                 </Avatar>
                 <div className="space-y-1">
-                  <h4 className="text-sm font-semibold">@lumen-ui</h4>
+                  <h4 className="text-sm font-semibold">@journal-ds</h4>
                   <p className="text-sm text-muted-foreground">
                     The React framework for production.
                   </p>
@@ -427,7 +427,7 @@ export function HoverCardPage() {
         ),
         code: `<HoverCard>
   <HoverCardTrigger asChild>
-    <button className="underline">@lumen-ui</button>
+    <button className="underline">@journal-ds</button>
   </HoverCardTrigger>
   <HoverCardContent className="w-80">
     {/* rich content */}

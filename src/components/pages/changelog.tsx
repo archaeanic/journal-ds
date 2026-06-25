@@ -11,7 +11,7 @@ const versions = [
     changes: [
       "Initial public release.",
       "Added 45+ components across 7 categories: Forms, Layout, Display, Overlays, Navigation, Feedback, and Sidebar.",
-      "Added the @lumen-ui/cli for adding components to projects.",
+      "Added the @journal-ds/cli for adding components to projects.",
       "Added dark mode support via next-themes.",
       "Added full TypeScript types and JSDoc comments for every component.",
     ],
@@ -31,7 +31,7 @@ const versions = [
     changes: [
       "Added Chart component with built-in chart container and tooltip.",
       "Added Carousel component with embla-carousel-react.",
-      "Renamed the project from 'Aurora UI' to 'Lumen UI'.",
+      "Renamed the project from 'Aurora UI' to 'Journal DS'.",
     ],
   },
 ]
@@ -40,10 +40,10 @@ export function ChangelogPage() {
   return (
     <DocPage
       title="Changelog"
-      description="All notable changes to Lumen UI are documented on this page."
+      description="All notable changes to Journal DS are documented on this page."
     >
       <P>
-        Lumen UI follows <a href="https://semver.org/" target="_blank" rel="noopener noreferrer" className="underline">Semantic Versioning</a>.
+        Journal DS follows <a href="https://semver.org/" target="_blank" rel="noopener noreferrer" className="underline">Semantic Versioning</a>.
         Each release ships with a new minor version for backwards-compatible
         features, and a new patch version for backwards-compatible bug fixes.
       </P>
@@ -51,7 +51,7 @@ export function ChangelogPage() {
       <Callout type="tip" title="Subscribe">
         Watch the{" "}
         <a
-          href="https://github.com/lumen-ui/react/releases"
+          href="https://github.com/journal-ds/react/releases"
           target="_blank"
           rel="noopener noreferrer"
           className="underline"

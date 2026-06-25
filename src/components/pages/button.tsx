@@ -132,15 +132,15 @@ export function ButtonPage() {
           title: "With Link (asChild)",
           preview: (
             <Button asChild>
-              <a href="https://lumen-ui.dev" target="_blank" rel="noreferrer">
-                Open Lumen UI
+              <a href="https://journal-ds.dev" target="_blank" rel="noreferrer">
+                Open Journal DS
                 <ChevronRight className="size-4" />
               </a>
             </Button>
           ),
           code: `<Button asChild>
-  <a href="https://lumen-ui.dev" target="_blank" rel="noreferrer">
-    Open Lumen UI
+  <a href="https://journal-ds.dev" target="_blank" rel="noreferrer">
+    Open Journal DS
     <ChevronRight className="size-4" />
   </a>
 </Button>`,

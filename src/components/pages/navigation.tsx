@@ -112,7 +112,7 @@ export function NavigationMenuPage() {
                     <li className="row-span-3">
                       <NavigationMenuLink asChild>
                         <a className="flex h-full w-full flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none">
-                          <div className="mb-2 mt-4 text-lg font-medium">Lumen UI</div>
+                          <div className="mb-2 mt-4 text-lg font-medium">Journal DS</div>
                           <p className="text-sm text-muted-foreground">
                             Beautifully designed components built with Radix UI.
                           </p>

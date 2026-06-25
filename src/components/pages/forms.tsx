@@ -686,7 +686,7 @@ export function FormPage() {
   return (
     <ComponentDocPage
       title="Form"
-      description="Build forms with react-hook-form, zod validation, and accessible Lumen UI components."
+      description="Build forms with react-hook-form, zod validation, and accessible Journal DS components."
       slug="form"
       primary={{
         preview: (

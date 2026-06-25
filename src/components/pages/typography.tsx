@@ -14,7 +14,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Lumen UI",
+  title: "Journal DS",
   description: "Beautifully designed components.",
 }
 
@@ -90,10 +90,10 @@ export function TypographyPage() {
   return (
     <DocPage
       title="Typography"
-      description="Set up a consistent type scale for your Lumen UI app with next/font and Tailwind's font family utilities."
+      description="Set up a consistent type scale for your Journal DS app with next/font and Tailwind's font family utilities."
     >
       <P>
-        Lumen UI doesn&apos;t ship with a font — it uses the system font stack
+        Journal DS doesn&apos;t ship with a font — it uses the system font stack
         by default. Most projects will want to install a custom font like{" "}
         <InlineCode>Inter</InlineCode>, <InlineCode>Geist</InlineCode>, or{" "}
         <InlineCode>Roboto</InlineCode>. Here&apos;s how to wire that up.
@@ -118,7 +118,7 @@ export function TypographyPage() {
 
       <DocSection title="Type scale">
         <P>
-          Lumen UI uses Tailwind&apos;s default type scale. Here&apos;s a
+          Journal DS uses Tailwind&apos;s default type scale. Here&apos;s a
           reference of the available sizes and their pixel equivalents:
         </P>
         <div className="my-4 overflow-hidden rounded-lg border">
@@ -149,14 +149,14 @@ export function TypographyPage() {
 
       <DocSection title="Prose styles">
         <P>
-          For long-form content (like this documentation), Lumen UI recommends
+          For long-form content (like this documentation), Journal DS recommends
           a set of base prose styles that work well with the default theme:
         </P>
         <CodeBlock code={proseStyles} language="css" className="my-4" filename="src/globals.css" />
       </DocSection>
 
       <Callout type="tip" title="Recommended fonts">
-        We recommend the following fonts for Lumen UI projects:{" "}
+        We recommend the following fonts for Journal DS projects:{" "}
         <strong>Inter</strong> for body text,{" "}
         <strong>Geist</strong> for a modern, geometric look,{" "}
         <strong>Geist Mono</strong> or{" "}

@@ -354,7 +354,7 @@ export function AlertPage() {
               <Info className="size-4" />
               <AlertTitle>Information</AlertTitle>
               <AlertDescription>
-                Lumen UI is open source and MIT licensed.
+                Journal DS is open source and MIT licensed.
               </AlertDescription>
             </Alert>
           ),
@@ -362,7 +362,7 @@ export function AlertPage() {
   <Info className="size-4" />
   <AlertTitle>Information</AlertTitle>
   <AlertDescription>
-    Lumen UI is open source and MIT licensed.
+    Journal DS is open source and MIT licensed.
   </AlertDescription>
 </Alert>`,
         },

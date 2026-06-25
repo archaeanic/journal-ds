@@ -4,10 +4,10 @@ import { DocPage, DocSection, P, InlineCode, Callout } from "@/components/docs/d
 import { CodeBlock } from "@/components/docs/code-block"
 import { InlineCode as IC } from "@/components/docs/doc-page"
 
-const npmInstall = `npm install @lumen-ui/react`
-const pnpmInstall = `pnpm add @lumen-ui/react`
-const yarnInstall = `yarn add @lumen-ui/react`
-const bunInstall = `bun add @lumen-ui/react`
+const npmInstall = `npm install @journal-ds/react`
+const pnpmInstall = `pnpm add @journal-ds/react`
+const yarnInstall = `yarn add @journal-ds/react`
+const bunInstall = `bun add @journal-ds/react`
 
 const tailwindConfig = `import type { Config } from "tailwindcss"
 
@@ -15,7 +15,7 @@ const config = {
   darkMode: ["class"],
   content: [
     "./src/**/*.{ts,tsx}",
-    "./node_modules/@lumen-ui/react/dist/**/*.{js,ts}",
+    "./node_modules/@journal-ds/react/dist/**/*.{js,ts}",
   ],
   theme: {
     container: {
@@ -118,17 +118,17 @@ const cssVariables = `@layer base {
   }
 }`
 
-const importCss = `@import "@lumen-ui/react/styles";`
+const importCss = `@import "@journal-ds/react/styles";`
 
 export function InstallationPage() {
   return (
     <DocPage
       title="Installation"
-      description="Install Lumen UI in your React or Next.js project in under 5 minutes."
+      description="Install Journal DS in your React or Next.js project in under 5 minutes."
     >
       <DocSection title="Prerequisites">
         <P>
-          Lumen UI is built for <IC>React 18+</IC> and <IC>TypeScript 5+</IC>.
+          Journal DS is built for <IC>React 18+</IC> and <IC>TypeScript 5+</IC>.
           It works with any modern bundler (Vite, Next.js, Remix, Webpack, etc.)
           and assumes you&apos;re using Tailwind CSS for styling.
         </P>
@@ -141,7 +141,7 @@ export function InstallationPage() {
       </DocSection>
 
       <DocSection title="1. Install the package">
-        <P>Install <InlineCode>@lumen-ui/react</InlineCode> with your favorite package manager:</P>
+        <P>Install <InlineCode>@journal-ds/react</InlineCode> with your favorite package manager:</P>
         <div className="my-4 grid gap-3 md:grid-cols-2">
           <CodeBlock code={npmInstall} language="bash" />
           <CodeBlock code={pnpmInstall} language="bash" />
@@ -152,7 +152,7 @@ export function InstallationPage() {
 
       <DocSection title="2. Import the styles">
         <P>
-          Add the Lumen UI styles to your global CSS file. This brings in the
+          Add the Journal DS styles to your global CSS file. This brings in the
           CSS variables that every component uses for theming.
         </P>
         <CodeBlock code={importCss} language="css" className="my-4" filename="src/globals.css" />
@@ -165,7 +165,7 @@ export function InstallationPage() {
 
       <DocSection title="3. Configure Tailwind">
         <P>
-          Add the Lumen UI theme to your Tailwind config so utility classes
+          Add the Journal DS theme to your Tailwind config so utility classes
           like <InlineCode>bg-primary</InlineCode> and{" "}
           <InlineCode>text-foreground</InlineCode> work as expected.
         </P>
@@ -218,10 +218,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <DocSection title="5. Start using components">
         <P>That&apos;s it. Import any component and start building:</P>
         <CodeBlock
-          code={`import { Button } from "@lumen-ui/react"
+          code={`import { Button } from "@journal-ds/react"
 
 export default function App() {
-  return <Button>Hello, Lumen!</Button>
+  return <Button>Hello, Journal!</Button>
 }`}
           language="tsx"
           className="my-4"
@@ -231,9 +231,9 @@ export default function App() {
       <DocSection title="CLI alternative">
         <P>
           Prefer to copy the source code into your project instead of using
-          the package? Use the Lumen UI CLI:
+          the package? Use the Journal DS CLI:
         </P>
-        <CodeBlock code={`npx @lumen-ui/cli add button`} language="bash" className="my-4" />
+        <CodeBlock code={`npx @journal-ds/cli add button`} language="bash" className="my-4" />
         <P>
           The CLI copies the component&apos;s source code directly into your{" "}
           <InlineCode>components/ui</InlineCode> folder, giving you full

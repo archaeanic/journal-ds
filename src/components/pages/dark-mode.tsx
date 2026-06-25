@@ -49,7 +49,7 @@ const toggleButton = `"use client"
 import * as React from "react"
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
-import { Button } from "@lumen-ui/react"
+import { Button } from "@journal-ds/react"
 
 export function ThemeToggle() {
   const { setTheme, theme } = useTheme()
@@ -71,10 +71,10 @@ export function DarkModePage() {
   return (
     <DocPage
       title="Dark Mode"
-      description="Add dark mode to your Lumen UI app with next-themes. Supports system preference, manual toggle, and per-route overrides."
+      description="Add dark mode to your Journal DS app with next-themes. Supports system preference, manual toggle, and per-route overrides."
     >
       <P>
-        Lumen UI ships with first-class dark mode support. The dark theme is
+        Journal DS ships with first-class dark mode support. The dark theme is
         defined by adding the <InlineCode>.dark</InlineCode> class to the{" "}
         <InlineCode>&lt;html&gt;</InlineCode> element, which overrides all the
         CSS variables to a darker palette.

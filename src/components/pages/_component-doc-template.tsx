@@ -25,7 +25,7 @@ export type ComponentDocConfig = {
   badges?: string[]
   /** The main import statement */
   importCode?: string
-  /** Custom install command (defaults to `npx @lumen-ui/cli add <slug>`) */
+  /** Custom install command (defaults to `npx @journal-ds/cli add <slug>`) */
   installCode?: string
   /** A short pitch paragraph that goes above the first preview */
   intro?: React.ReactNode
@@ -43,10 +43,10 @@ export type ComponentDocConfig = {
 
 export function ComponentDocPage(config: ComponentDocConfig) {
   const installCmd =
-    config.installCode ?? `npx @lumen-ui/cli add ${config.slug}`
+    config.installCode ?? `npx @journal-ds/cli add ${config.slug}`
   const importCode =
     config.importCode ??
-    `import { ${config.title.replace(/[^A-Za-z]/g, "").replace(/^./, (c) => c.toUpperCase())} } from "@lumen-ui/react"`
+    `import { ${config.title.replace(/[^A-Za-z]/g, "").replace(/^./, (c) => c.toUpperCase())} } from "@journal-ds/react"`
 
   return (
     <DocPage title={config.title} description={config.description}>
@@ -77,7 +77,7 @@ export function ComponentDocPage(config: ComponentDocConfig) {
       {/* Usage */}
       <DocSection title="Usage">
         <CodeBlock
-          code={`import { ${config.title.replace(/[^A-Za-z]/g, "").replace(/^./, (c) => c.toUpperCase())} } from "@lumen-ui/react"
+          code={`import { ${config.title.replace(/[^A-Za-z]/g, "").replace(/^./, (c) => c.toUpperCase())} } from "@journal-ds/react"
 
 export default function Example() {
   return (
@@ -140,7 +140,7 @@ export default function Example() {
       <Callout type="tip" title="Need help?">
         If you run into issues, check the{" "}
         <a
-          href="https://github.com/lumen-ui/react/issues"
+          href="https://github.com/journal-ds/react/issues"
           target="_blank"
           rel="noopener noreferrer"
           className="underline"

@@ -298,13 +298,13 @@
 }
 
 /* Custom scrollbar for code blocks and scroll areas. */
-.lumen-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
-.lumen-scroll::-webkit-scrollbar-track { background: transparent; }
-.lumen-scroll::-webkit-scrollbar-thumb {
+.journal-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.journal-scroll::-webkit-scrollbar-track { background: transparent; }
+.journal-scroll::-webkit-scrollbar-thumb {
   background: var(--journal-warm);
   border-radius: 9999px;
 }
-.lumen-scroll::-webkit-scrollbar-thumb:hover { background: var(--journal-sepia); }
+.journal-scroll::-webkit-scrollbar-thumb:hover { background: var(--journal-sepia); }
 
 /* Selection — burgundy on paper. */
 ::selection {

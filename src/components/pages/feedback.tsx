@@ -311,7 +311,7 @@ export function ChartPage() {
             </div>
           </div>
         ),
-        code: `import { Bar, BarChart, ChartContainer, ChartTooltip, ChartTooltipContent } from "@lumen-ui/react"
+        code: `import { Bar, BarChart, ChartContainer, ChartTooltip, ChartTooltipContent } from "@journal-ds/react"
 
 <ChartContainer config={chartConfig}>
   <BarChart data={data}>
@@ -342,7 +342,7 @@ export function SidebarPage() {
               <aside className="flex w-56 flex-col border-r bg-muted/30 p-3">
                 <div className="mb-4 flex items-center gap-2 px-2">
                   <div className="size-6 rounded-md bg-primary" />
-                  <span className="text-sm font-semibold">Lumen UI</span>
+                  <span className="text-sm font-semibold">Journal DS</span>
                 </div>
                 <nav className="flex-1 space-y-1">
                   <a className="block rounded-md bg-background px-3 py-1.5 text-sm font-medium">Dashboard</a>

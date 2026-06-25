@@ -18,7 +18,7 @@ export function Sidebar({ className, onNavigate }: SidebarProps) {
       aria-label="Documentation"
       className={cn("flex h-full flex-col bg-journal-paper", className)}
     >
-      <div className="flex-1 overflow-y-auto px-4 py-6 lumen-scroll">
+      <div className="flex-1 overflow-y-auto px-4 py-6 journal-scroll">
         {navSections.map((section) => (
           <div key={section.title} className="mb-7">
             <h4 className="mb-2.5 px-2 journal-eyebrow">

@@ -65,10 +65,10 @@ export function ThemingPage() {
   return (
     <DocPage
       title="Theming"
-      description="Customize the look and feel of Lumen UI with CSS variables. Change colors, radii, spacing, and typography without touching component source code."
+      description="Customize the look and feel of Journal DS with CSS variables. Change colors, radii, spacing, and typography without touching component source code."
     >
       <P>
-        Every component in Lumen UI is styled using CSS variables. This means
+        Every component in Journal DS is styled using CSS variables. This means
         you can theme the entire design system by changing a handful of
         variables in your global CSS — no need to override individual
         components or fight against opinionated styles.
@@ -76,7 +76,7 @@ export function ThemingPage() {
 
       <DocSection title="How it works">
         <P>
-          Lumen UI uses HSL color values (e.g. <InlineCode>240 5.9% 10%</InlineCode>)
+          Journal DS uses HSL color values (e.g. <InlineCode>240 5.9% 10%</InlineCode>)
           stored as CSS variables. Tailwind CSS reads these variables via the{" "}
           <InlineCode>hsl(var(--variable))</InlineCode> syntax, which means
           utility classes like <InlineCode>bg-primary</InlineCode>,{" "}
@@ -114,7 +114,7 @@ export function ThemingPage() {
 
       <DocSection title="Color tokens">
         <P>
-          Lumen UI ships with the following color tokens, all of which support
+          Journal DS ships with the following color tokens, all of which support
           light and dark mode out of the box:
         </P>
         <div className="my-4 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
@@ -140,7 +140,7 @@ export function ThemingPage() {
       <DocSection title="Radius">
         <P>
           The <InlineCode>--radius</InlineCode> variable controls the corner
-          radius of every component. Lumen UI uses three derived radius
+          radius of every component. Journal DS uses three derived radius
           values:
         </P>
         <ul className="ml-4 list-disc space-y-1 text-muted-foreground">

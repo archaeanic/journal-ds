@@ -78,7 +78,7 @@ export function CodeBlock({
 function SyntaxHighlight({ code, language }: { code: string; language: string }) {
   const html = React.useMemo(() => highlight(code, language), [code, language])
   return (
-    <pre className="overflow-x-auto p-4 text-[12px] leading-relaxed text-[#e8dcc8]/80 lumen-scroll">
+    <pre className="overflow-x-auto p-4 text-[12px] leading-relaxed text-[#e8dcc8]/80 journal-scroll">
       <code dangerouslySetInnerHTML={{ __html: html }} />
     </pre>
   )

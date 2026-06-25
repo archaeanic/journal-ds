@@ -10,10 +10,10 @@ export function FigmaPage() {
   return (
     <DocPage
       title="Figma"
-      description="Design with Lumen UI in Figma. The official Figma kit mirrors every component, variant, and token in the codebase."
+      description="Design with Journal DS in Figma. The official Figma kit mirrors every component, variant, and token in the codebase."
     >
       <P>
-        The Lumen UI Figma kit is a pixel-perfect mirror of the React
+        The Journal DS Figma kit is a pixel-perfect mirror of the React
         components. It&apos;s designed to be used by both designers and
         developers — every component in the kit has a 1:1 mapping to a
         component in the codebase, so designs can be handed off without
@@ -28,7 +28,7 @@ export function FigmaPage() {
       >
         <Button asChild>
           <a
-            href="https://figma.com/lumen-ui"
+            href="https://figma.com/journal-ds"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -43,7 +43,7 @@ export function FigmaPage() {
           The Figma kit includes:
         </P>
         <ul className="ml-4 list-disc space-y-1.5 text-muted-foreground">
-          <li>Every component in the Lumen UI library, with all variants and sizes.</li>
+          <li>Every component in the Journal DS library, with all variants and sizes.</li>
           <li>Auto-layout and component properties for easy composition.</li>
           <li>Color styles for every theme token, including dark mode.</li>
           <li>Typography styles for headings, body, and code.</li>
@@ -60,7 +60,7 @@ export function FigmaPage() {
           component automatically.
         </P>
         <CodeBlock
-          code={`1. Open the Lumen UI Figma file.
+          code={`1. Open the Journal DS Figma file.
 2. Click "Duplicate" to copy it into your workspace.
 3. Edit the color styles in the "Tokens" page.
 4. Use components from the "Library" page in your designs.`}
@@ -92,7 +92,7 @@ export function FigmaPage() {
       </DocSection>
 
       <Callout type="note" title="License">
-        The Lumen UI Figma kit is free to use for both personal and commercial
+        The Journal DS Figma kit is free to use for both personal and commercial
         projects, under the same MIT license as the codebase. Attribution is
         appreciated but not required.
       </Callout>
@@ -100,7 +100,7 @@ export function FigmaPage() {
       <div className="mt-8 flex flex-wrap gap-3">
         <Button asChild>
           <a
-            href="https://figma.com/lumen-ui"
+            href="https://figma.com/journal-ds"
             target="_blank"
             rel="noopener noreferrer"
           >
