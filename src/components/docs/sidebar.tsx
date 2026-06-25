@@ -2,7 +2,8 @@
 
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { Link, useRouter } from "@/lib/router"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { navSections, type NavItem } from "@/lib/registry"
 
 type SidebarProps = {
@@ -11,7 +12,7 @@ type SidebarProps = {
 }
 
 export function Sidebar({ className, onNavigate }: SidebarProps) {
-  const { path } = useRouter()
+  const path = usePathname()
 
   return (
     <nav
@@ -53,7 +54,7 @@ function SidebarLink({
 }) {
   return (
     <Link
-      to={item.path}
+      href={item.path}
       onClick={onClick}
       className={cn(
         "flex items-center justify-between rounded-sm px-2 py-1.5 font-serif text-sm transition-colors",

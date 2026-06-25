@@ -17,7 +17,7 @@ import {
   Quote,
   PenLine,
 } from "lucide-react"
-import { Link } from "@/lib/router"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import {
@@ -100,13 +100,13 @@ export function HomePage() {
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Button asChild size="lg" className="rounded-sm">
-              <Link to="/docs/introduction">
+              <Link href="/docs/introduction">
                 Get Started
                 <ArrowRight className="size-4" />
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="rounded-sm border-journal-ink text-journal-ink hover:bg-journal-ink hover:text-journal-paper">
-              <Link to="/docs/button">
+              <Link href="/docs/button">
                 <Boxes className="size-4" />
                 Browse Components
               </Link>
@@ -223,7 +223,7 @@ export function HomePage() {
               content-rich apps.
             </p>
             <Button asChild variant="outline" className="mt-6 rounded-sm border-journal-ink text-journal-ink hover:bg-journal-ink hover:text-journal-paper">
-              <Link to="/docs/typography">
+              <Link href="/docs/typography">
                 Read the docs
                 <ArrowRight className="size-4" />
               </Link>
@@ -288,7 +288,7 @@ export function HomePage() {
             {allComponents.map((c) => (
               <Link
                 key={c.path}
-                to={c.path}
+                href={c.path}
                 className="group flex flex-col gap-2 rounded-sm border border-journal-rule p-4 transition hover:bg-journal-paper-dark"
               >
                 <div className="flex h-12 items-center justify-center rounded-sm bg-journal-paper-dark text-journal-burgundy">
@@ -333,7 +333,7 @@ export function HomePage() {
               </p>
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <Button asChild size="lg" className="rounded-sm">
-                  <Link to="/docs/installation">
+                  <Link href="/docs/installation">
                     Install Journal DS
                     <ArrowRight className="size-4" />
                   </Link>
@@ -509,10 +509,10 @@ export function SiteFooter() {
           </span>
         </div>
         <div className="flex items-center gap-6 font-serif text-sm text-journal-ink-light">
-          <Link to="/docs/introduction" className="hover:text-journal-burgundy">
+          <Link href="/docs/introduction" className="hover:text-journal-burgundy">
             Docs
           </Link>
-          <Link to="/docs/changelog" className="hover:text-journal-burgundy">
+          <Link href="/docs/changelog" className="hover:text-journal-burgundy">
             Changelog
           </Link>
           <a

@@ -3,7 +3,8 @@
 import * as React from "react"
 import { ArrowRight, ArrowLeft } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Link, useRouter } from "@/lib/router"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { getAdjacentItems } from "@/lib/registry"
 
 /**
@@ -19,7 +20,7 @@ export function DocPage({
   description?: string
   children: React.ReactNode
 }) {
-  const { path } = useRouter()
+  const path = usePathname()
   const { previous, next } = getAdjacentItems(path)
 
   return (
@@ -49,7 +50,7 @@ export function DocPage({
         >
           {previous ? (
             <Link
-              to={previous.path}
+              href={previous.path}
               className="group flex flex-col items-start gap-1 rounded-sm border border-journal-rule p-4 transition hover:bg-journal-paper-dark"
             >
               <span className="flex items-center gap-1 journal-eyebrow">
@@ -65,7 +66,7 @@ export function DocPage({
           )}
           {next ? (
             <Link
-              to={next.path}
+              href={next.path}
               className={cn(
                 "group flex flex-col items-end gap-1 rounded-sm border border-journal-rule p-4 text-right transition hover:bg-journal-paper-dark"
               )}

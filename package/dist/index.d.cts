@@ -144,11 +144,12 @@ declare function DialogTitle({ className, ...props }: React$1.ComponentProps<typ
 declare function DialogDescription({ className, ...props }: React$1.ComponentProps<typeof DialogPrimitive.Description>): React$1.JSX.Element;
 
 declare function Command({ className, ...props }: React$1.ComponentProps<typeof Command$1>): React$1.JSX.Element;
-declare function CommandDialog({ title, description, children, className, showCloseButton, ...props }: React$1.ComponentProps<typeof Dialog> & {
+declare function CommandDialog({ title, description, children, className, showCloseButton, commandProps, ...props }: React$1.ComponentProps<typeof Dialog> & {
     title?: string;
     description?: string;
     className?: string;
     showCloseButton?: boolean;
+    commandProps?: Omit<React$1.ComponentProps<typeof Command$1>, "children">;
 }): React$1.JSX.Element;
 declare function CommandInput({ className, ...props }: React$1.ComponentProps<typeof Command$1.Input>): React$1.JSX.Element;
 declare function CommandList({ className, ...props }: React$1.ComponentProps<typeof Command$1.List>): React$1.JSX.Element;
@@ -215,7 +216,7 @@ declare function DropdownMenuSubTrigger({ className, inset, children, ...props }
 }): React$1.JSX.Element;
 declare function DropdownMenuSubContent({ className, ...props }: React$1.ComponentProps<typeof DropdownMenuPrimitive.SubContent>): React$1.JSX.Element;
 
-declare const Form: <TFieldValues extends FieldValues, TContext = any, TTransformedValues = TFieldValues>(props: react_hook_form.FormProviderProps<TFieldValues, TContext, TTransformedValues>) => React$1.JSX.Element;
+declare const Form: <TFieldValues extends FieldValues, TContext = any, TTransformedValues = TFieldValues>({ children, watch, getValues, getFieldState, setError, clearErrors, setValue, setValues, trigger, formState, resetField, reset, handleSubmit, unregister, control, register, setFocus, subscribe, }: react_hook_form.FormProviderProps<TFieldValues, TContext, TTransformedValues>) => React$1.JSX.Element;
 declare const FormField: <TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>({ ...props }: ControllerProps<TFieldValues, TName>) => React$1.JSX.Element;
 declare const useFormField: () => {
     invalid: boolean;

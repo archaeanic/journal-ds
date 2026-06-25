@@ -44,24 +44,24 @@ export function CodeBlock({
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-sm border border-journal-rule",
+        "group relative overflow-hidden rounded-sm border border-[#3D3225]",
         className
       )}
       data-language={language}
     >
       {filename && (
-        <div className="flex items-center justify-between border-b border-journal-rule bg-journal-paper-dark px-4 py-2 text-xs text-journal-sepia">
+        <div className="flex items-center justify-between border-b border-[#3D3225] bg-[#221C16] px-4 py-2 text-xs text-[#A89880]">
           <span className="font-mono">{filename}</span>
         </div>
       )}
-      <div className="relative bg-journal-ink">
+      <div className="relative bg-[#1A1410]">
         <SyntaxHighlight code={code} language={language} />
         <button
           type="button"
           onClick={copy}
           aria-label="Copy code"
           className={cn(
-            "absolute right-3 top-3 z-10 inline-flex size-8 items-center justify-center rounded-sm bg-journal-ink/60 text-[#e8dcc8]/70 backdrop-blur opacity-0 transition hover:bg-journal-ink hover:text-[#e8dcc8] focus:opacity-100 group-hover:opacity-100"
+            "absolute right-3 top-3 z-10 inline-flex size-8 items-center justify-center rounded-sm bg-[#1A1410]/60 text-[#e8dcc8]/70 backdrop-blur opacity-0 transition hover:bg-[#1A1410] hover:text-[#e8dcc8] focus:opacity-100 group-hover:opacity-100"
           )}
         >
           {copied ? (

@@ -5,7 +5,7 @@ import { DocPage, DocSection, P, InlineCode, Callout } from "@/components/docs/d
 import { CodeBlock } from "@/components/docs/code-block"
 import { ComponentPreview } from "@/components/docs/component-preview"
 import { Button } from "@/components/ui/button"
-import { Link } from "@/lib/router"
+import Link from "next/link"
 
 const installCode = `npm install @journal-ds/react`
 
@@ -144,7 +144,7 @@ export function IntroductionPage() {
         </P>
         <div className="mt-4 flex flex-wrap gap-3">
           <Button asChild>
-            <Link to="/docs/installation">
+            <Link href="/docs/installation">
               <Sparkles className="size-4" />
               Get Started
               <ArrowRight className="size-4" />

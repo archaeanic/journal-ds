@@ -1,11 +1,11 @@
 {
   "name": "@journal-ds/cli",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Command-line tool for adding Journal Design System components to your project.",
   "license": "MIT",
   "type": "module",
   "bin": {
-    "journal": "./dist/index.js"
+    "journal-ds": "./dist/index.js"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

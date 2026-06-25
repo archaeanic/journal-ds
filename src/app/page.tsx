@@ -1,10 +1,13 @@
-import { RouterProvider } from "@/lib/router";
-import { DocsApp } from "@/components/docs/docs-app";
+import { SiteHeader } from "@/components/docs/site-header";
+import { HomePage } from "@/components/pages/home";
 
 export default function Home() {
   return (
-    <RouterProvider>
-      <DocsApp />
-    </RouterProvider>
+    <div className="flex min-h-screen flex-col bg-journal-paper">
+      <SiteHeader />
+      <main className="flex-1">
+        <HomePage />
+      </main>
+    </div>
   );
 }

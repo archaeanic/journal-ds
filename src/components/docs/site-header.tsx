@@ -7,7 +7,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/s
 import { ThemeToggle } from "./theme-toggle"
 import { Sidebar } from "./sidebar"
 import { SearchDialog } from "./search-dialog"
-import { Link } from "@/lib/router"
+import Link from "next/link"
 
 export function SiteHeader() {
   const [navOpen, setNavOpen] = React.useState(false)
@@ -36,7 +36,7 @@ export function SiteHeader() {
         </Sheet>
 
         {/* Logo + brand */}
-        <Link to="/" className="flex items-center gap-3 group">
+        <Link href="/" className="flex items-center gap-3 group">
           <JournalLogo className="size-8 text-journal-burgundy transition-transform group-hover:rotate-3" />
           <div className="flex flex-col leading-none">
             <span className="font-serif text-lg font-bold text-journal-ink tracking-tight">

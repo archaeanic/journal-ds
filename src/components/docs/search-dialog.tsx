@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useRouter } from "@/lib/router"
+import { useRouter } from "next/navigation"
 import { searchItems, type SearchResult } from "@/lib/registry"
 import {
   CommandDialog,
@@ -28,7 +28,7 @@ export function SearchDialog({
   onOpenChange: (open: boolean) => void
 }) {
   const [query, setQuery] = React.useState("")
-  const { navigate } = useRouter()
+  const router = useRouter()
 
   // ── Global keyboard shortcuts ──
   // Always mounted so the shortcut works even when the dialog is closed.
@@ -81,9 +81,9 @@ export function SearchDialog({
   const handleSelect = React.useCallback(
     (path: string) => {
       onOpenChange(false)
-      setTimeout(() => navigate(path), 50)
+      setTimeout(() => router.push(path), 50)
     },
-    [navigate, onOpenChange]
+    [router, onOpenChange]
   )
 
   // ── Popular items (shown when no query) ──
