@@ -1,4 +1,4 @@
-// Lumen UI - Beautifully designed components built with Radix UI and Tailwind CSS.
+// Journal Design System — A warm, editorial component library for Tailwind CSS.
 
 // Utilities
 export { cn } from "./lib/utils"

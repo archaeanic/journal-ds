@@ -1,7 +1,7 @@
 {
-  "name": "@lumen-ui/react",
+  "name": "@journal-ds/react",
   "version": "1.0.0",
-  "description": "Beautifully designed components built with Radix UI and Tailwind CSS. Open source. Copy and paste into your apps.",
+  "description": "A warm, editorial journal-style component library for Tailwind CSS. Built on Radix UI primitives. Open source. Copy and paste into your apps.",
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -98,15 +98,20 @@
     "tailwind",
     "radix-ui",
     "design-system",
-    "shadcn"
+    "journal",
+    "editorial",
+    "shadcn",
+    "playfair",
+    "lora",
+    "serif"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/lumen-ui/react.git"
+    "url": "https://github.com/journal-ds/react.git"
   },
-  "homepage": "https://lumen-ui.dev",
+  "homepage": "https://journal-ds.dev",
   "bugs": {
-    "url": "https://github.com/lumen-ui/react/issues"
+    "url": "https://github.com/journal-ds/react/issues"
   },
   "publishConfig": {
     "access": "public"

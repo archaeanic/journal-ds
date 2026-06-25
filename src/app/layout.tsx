@@ -1,51 +1,61 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Lora, Playfair_Display, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as SonnerToaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/docs/theme-provider";
 
-const inter = Inter({
-  variable: "--font-geist-sans",
+const lora = Lora({
+  variable: "--font-lora",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Lumen UI — Beautifully designed React components",
-    template: "%s · Lumen UI",
+    default: "Journal Design System — A Tailwind CSS Component Library",
+    template: "%s · Journal DS",
   },
   description:
-    "Lumen UI is a collection of beautifully designed, accessible components that you can copy and paste into your React apps. Built with Radix UI and Tailwind CSS.",
+    "A warm, editorial journal-style component library for Tailwind CSS. Built on Radix UI primitives. Open source. Copy and paste into your apps.",
   keywords: [
-    "Lumen UI",
-    "React",
-    "Next.js",
-    "TypeScript",
+    "Journal",
+    "Journal Design System",
+    "Lora",
+    "Playfair Display",
     "Tailwind CSS",
     "Radix UI",
     "shadcn",
     "design system",
     "components",
+    "editorial",
   ],
-  authors: [{ name: "Lumen UI" }],
+  authors: [{ name: "Journal DS" }],
   openGraph: {
-    title: "Lumen UI — Beautifully designed React components",
+    title: "Journal Design System — A Tailwind CSS Component Library",
     description:
-      "A collection of beautifully designed, accessible components that you can copy and paste into your React apps.",
-    url: "https://lumen-ui.dev",
-    siteName: "Lumen UI",
+      "A warm, editorial journal-style component library for Tailwind CSS. Inspired by the art of journaling and print publishing.",
+    url: "https://journal-ds.dev",
+    siteName: "Journal Design System",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lumen UI",
-    description: "Beautifully designed React components. Open source.",
+    title: "Journal Design System",
+    description:
+      "A warm, editorial journal-style component library for Tailwind CSS.",
   },
 };
 
@@ -57,11 +67,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground`}
+        className={`${lora.variable} ${playfair.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >

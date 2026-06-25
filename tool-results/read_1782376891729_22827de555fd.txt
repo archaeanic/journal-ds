@@ -1,0 +1,562 @@
+     1→  5858→File: page.tsx
+     2→  5859→Content:
+     3→  5860→"use client";
+     4→  5861→
+     5→  5862→import React from "react";
+     6→  5863→import { registry, categories, getComponentsByCategory, getAllComponentNames } from "@/lib/registry";
+     7→  5864→import { CodeBlock, ComponentPreview, PropsTable, InstallCommand, SidebarNav, ComponentHeader } from "@/components/website/ui";
+     8→  5865→
+     9→  5866→/* ═══════════════════════════════════════════════════════════
+    10→  5867→   Journal Design System — Full Documentation Website
+    11→  5868→   Single-page app with hash routing, sidebar, live previews,
+    12→  5869→   installable code, and copy-to-clipboard.
+    13→  5870→   ═══════════════════════════════════════════════════════════ */
+    14→  5871→
+    15→  5872→/* ─── Hash-based router ─── */
+    16→  5873→function useHash() {
+    17→  5874→  const [hash, setHash] = React.useState("");
+    18→  5875→  React.useEffect(() => {
+    19→  5876→    const h = window.location.hash.replace("#", "") || "hero";
+    20→  5877→    setHash(h);
+    21→  5878→    const onHash = () => setHash(window.location.hash.replace("#", "") || "hero");
+    22→  5879→    window.addEventListener("hashchange", onHash);
+    23→  5880→    return () => window.removeEventListener("hashchange", onHash);
+    24→  5881→  }, []);
+    25→  5882→  return hash;
+    26→  5883→}
+    27→  5884→
+    28→  5885→function navigate(id: string) {
+    29→  5886→  window.location.hash = id;
+    30→  5887→  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    31→  5888→}
+    32→  5889→
+    33→  5890→/* ─── Sidebar data ─── */
+    34→  5891→function getSidebarData() {
+    35→  5892→  const staticLinks = [
+    36→  5893→    { name: "Introduction", slug: "hero" },
+    37→  5894→    { name: "Installation", slug: "installation" },
+    38→  5895→    { name: "Theming", slug: "theming" },
+    39→  5896→  ];
+    40→  5897→  const catLinks = categories.map((cat) => ({
+    41→  5898→    id: cat.id,
+    42→  5899→    label: cat.label,
+    43→  5900→    components: getComponentsByCategory(cat.id).map((c) => ({
+    44→  5901→      name: c.name.replace("Journal", ""),
+    45→  5902→      slug: c.name.replace("Journal", "").toLowerCase().replace(/\s+/g, "-"),
+    46→  5903→      fullName: c.name,
+    47→  5904→    })),
+    48→  5905→  }));
+    49→  5906→  return { staticLinks, catLinks };
+    50→  5907→}
+    51→  5908→
+    52→  5909→/* ═══════════════════════════════════════════════════════════
+    53→  5910→   PAGE SECTIONS
+    54→  5911→   ═══════════════════════════════════════════════════════════ */
+    55→  5912→
+    56→  5913→function HeroSection() {
+    57→  5914→  return (
+    58→  5915→    <section id="hero" className="scroll-mt-20 pt-8 pb-16">
+    59→  5916→      <div className="max-w-2xl">
+    60→  5917→        <p className="text-xs uppercase tracking-[0.25em] text-journal-burgundy font-semibold mb-4">Open Source</p>
+    61→  5918→        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-journal-ink tracking-tight leading-[1.1] mb-6">
+    62→  5919→          Journal Design<br />System
+    63→  5920→        </h1>
+    64→  5921→        <p className="text-lg md:text-xl text-journal-ink-light font-serif leading-relaxed mb-8">
+    65→  5922→          A warm, editorial component library for Tailwind CSS. Inspired by the art of journaling and print publishing — serif typography, paper textures, and thoughtful details.
+    66→  5923→        </p>
+    67→  5924→        <div className="flex flex-wrap gap-3 mb-10">
+    68→  5925→          <a href="#installation" onClick={(e) => { e.preventDefault(); navigate("installation"); }} className="inline-flex items-center gap-2 bg-journal-ink text-journal-paper px-6 py-3 rounded-sm text-xs uppercase tracking-wider font-semibold hover:bg-journal-ink-light transition-colors">
+    69→  5926→            Get Started
+    70→  5927→            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+    71→  5928→          </a>
+    72→  5929→          <a href="#components" onClick={(e) => { e.preventDefault(); navigate("components"); }} className="inline-flex items-center gap-2 border border-journal-ink text-journal-ink px-6 py-3 rounded-sm text-xs uppercase tracking-wider font-semibold hover:bg-journal-ink hover:text-journal-paper transition-colors">
+    73→  5930→            Components
+    74→  5931→          </a>
+    75→  5932→        </div>
+    76→  5933→        <div className="grid grid-cols-3 gap-6 pt-8 border-t border-journal-rule">
+    77→  5934→          <div>
+    78→  5935→            <p className="font-serif text-3xl font-bold text-journal-ink">21</p>
+    79→  5936→            <p className="text-xs text-journal-sepia uppercase tracking-wider mt-1">Components</p>
+    80→  5937→          </div>
+    81→  5938→          <div>
+    82→  5939→            <p className="font-serif text-3xl font-bold text-journal-ink">4</p>
+    83→  5940→            <p className="text-xs text-journal-sepia uppercase tracking-wider mt-1">Categories</p>
+    84→  5941→          </div>
+    85→  5942→          <div>
+    86→  5943→            <p className="font-serif text-3xl font-bold text-journal-ink">9</p>
+    87→  5944→            <p className="text-xs text-journal-sepia uppercase tracking-wider mt-1">CSS Utilities</p>
+    88→  5945→          </div>
+    89→  5946→        </div>
+    90→  5947→      </div>
+    91→  5948→    </section>
+    92→  5949→  );
+    93→  5950→}
+    94→  5951→
+    95→  5952→function InstallationSection() {
+    96→  5953→  return (
+    97→  5954→    <section id="installation" className="scroll-mt-20 py-16 border-t border-journal-rule">
+    98→  5955→      <h2 className="font-serif text-2xl md:text-3xl font-bold text-journal-ink tracking-tight mb-6">Installation</h2>
+    99→  5956→
+   100→  5957→      <h3 className="font-serif text-lg font-semibold text-journal-ink mb-3">1. Add the theme to your CSS</h3>
+   101→  5958→      <p className="text-sm text-journal-ink-light font-serif leading-relaxed mb-4">
+   102→  5959→        Copy the journal theme tokens and utility classes into your Tailwind CSS configuration. The theme provides all custom properties (colors, fonts) and CSS utility classes for paper effects.
+   103→  5960→      </p>
+   104→  5961→      <InstallCommand command={`bun run cli/install.ts --theme --dest ./src/components`} />
+   105→  5962→
+   106→  5963→      <h3 className="font-serif text-lg font-semibold text-journal-ink mb-3 mt-10">2. Install individual components</h3>
+   107→  5964→      <p className="text-sm text-journal-ink-light font-serif leading-relaxed mb-4">
+   108→  5965→        Each component is self-contained — it copies a single file into your project. No package dependencies beyond Tailwind CSS and <code className="text-xs bg-journal-paper-dark px-1.5 py-0.5 rounded font-mono">cn()</code> utility.
+   109→  5966→      </p>
+   110→  5967→      <InstallCommand command={`bun run cli/install.ts journal-heading journal-body journal-button`} />
+   111→  5968→
+   112→  5969→      <h3 className="font-serif text-lg font-semibold text-journal-ink mb-3 mt-10">3. Install all components</h3>
+   113→  5970→      <p className="text-sm text-journal-ink-light font-serif leading-relaxed mb-4">
+   114→  5971→        Use the <code className="text-xs bg-journal-paper-dark px-1.5 py-0.5 rounded font-mono">--all</code> flag to install every component at once, plus the theme and barrel export.
+   115→  5972→      </p>
+   116→  5973→      <InstallCommand command={`bun run cli/install.ts --all --theme --dest ./src/components`} />
+   117→  5974→
+   118→  5975→      <h3 className="font-serif text-lg font-semibold text-journal-ink mb-3 mt-10">4. Import and use</h3>
+   119→  5976→      <CodeBlock filename="page.tsx">{`import {
+   120→  5977→  JournalHeading, JournalBody, JournalButton,
+   121→  5978→  JournalEntryCard, JournalBlockquote,
+   122→  5979→} from "@/components/journal";
+   123→  5980→
+   124→  5981→export default function Page() {
+   125→  5982→  return (
+   126→  5983→    <main className="bg-journal-paper min-h-screen p-8 max-w-3xl mx-auto">
+   127→  5984→      <JournalHeading level={1}>My Journal</JournalHeading>
+   128→  5985→      <JournalBody>
+   129→  5986→        The art of journaling stretches back centuries...
+   130→  5987→      </JournalBody>
+   131→  5988→      <JournalButton variant="primary" size="lg">
+   132→  5989→        New Entry
+   133→  5990→      </JournalButton>
+   134→  5991→    </main>
+   135→  5992→  );
+   136→  5993→}`}</CodeBlock>
+   137→  5994→
+   138→  5995→      <h3 className="font-serif text-lg font-semibold text-journal-ink mb-3 mt-10">Prerequisites</h3>
+   139→  5996→      <ul className="space-y-2 text-sm text-journal-ink-light font-serif leading-relaxed">
+   140→  5997→        <li className="flex items-start gap-2.5"><span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-journal-burgundy shrink-0" /><span><strong className="text-journal-ink">Tailwind CSS 4</strong> — the theme uses Tailwind v4 <code className="text-xs bg-journal-paper-dark px-1.5 py-0.5 rounded font-mono">@theme inline</code> syntax</span></li>
+   141→  5998→        <li className="flex items-start gap-2.5"><span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-journal-burgundy shrink-0" /><span><strong className="text-journal-ink">cn() utility</strong> — a <code className="text-xs bg-journal-paper-dark px-1.5 py-0.5 rounded font-mono">clsx + tailwind-merge</code> helper at <code className="text-xs bg-journal-paper-dark px-1.5 py-0.5 rounded font-mono">@/lib/utils</code> (included with shadcn/ui projects)</span></li>
+   142→  5999→        <li className="flex items-start gap-2.5"><span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-journal-burgundy shrink-0" /><span><strong className="text-journal-ink">Google Fonts</strong> — Lora, Playfair Display, Source Serif 4 (loaded via next/font/google or any method)</span></li>
+   143→  6000→      </ul>
+   144→  6001→
+   145→  6002→      <h3 className="font-serif text-lg font-semibold text-journal-ink mb-3 mt-10">Available Components</h3>
+   146→  6003→      <CodeBlock>{getAllComponentNames().join(", ")}</CodeBlock>
+   147→  6004→    </section>
+   148→  6005→  );
+   149→  6006→}
+   150→  6007→
+   151→  6008→function ThemingSection() {
+   152→  6009→  return (
+   153→  6010→    <section id="theming" className="scroll-mt-20 py-16 border-t border-journal-rule">
+   154→  6011→      <h2 className="font-serif text-2xl md:text-3xl font-bold text-journal-ink tracking-tight mb-6">Theming</h2>
+   155→  6012→
+   156→  6013→      <p className="text-sm text-journal-ink-light font-serif leading-relaxed mb-6">
+   157→  6014→        The design system uses CSS custom properties for all colors, making it fully themeable. Override any token in your <code className="text-xs bg-journal-paper-dark px-1.5 py-0.5 rounded font-mono">:root</code> or <code className="text-xs bg-journal-paper-dark px-1.5 py-0.5 rounded font-mono">.dark</code> selector.
+   158→  6015→      </p>
+   159→  6016→
+   160→  6017→      <h3 className="font-serif text-lg font-semibold text-journal-ink mb-4">Color Palette</h3>
+   161→  6018→      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mb-10">
+   162→  6019→        {[
+   163→  6020→          { name: "paper", cls: "bg-journal-paper", border: true, hex: "#FDFAF5" },
+   164→  6021→          { name: "ink", cls: "bg-journal-ink text-journal-paper", border: false, hex: "#2C1810" },
+   165→  6022→          { name: "ink-light", cls: "bg-journal-ink-light text-journal-paper", border: false, hex: "#5A4636" },
+   166→  6023→          { name: "sepia", cls: "bg-journal-sepia text-journal-paper", border: false, hex: "#8B7355" },
+   167→  6024→          { name: "burgundy", cls: "bg-journal-burgundy text-journal-paper", border: false, hex: "#5C1A1B" },
+   168→  6025→          { name: "forest", cls: "bg-journal-forest text-journal-paper", border: false, hex: "#2D5F3E" },
+   169→  6026→          { name: "gold", cls: "bg-journal-gold text-journal-paper", border: false, hex: "#B8860B" },
+   170→  6027→          { name: "warm", cls: "bg-journal-warm", border: true, hex: "#D4C5A9" },
+   171→  6028→          { name: "rule", cls: "bg-journal-rule", border: true, hex: "#D9CBBA" },
+   172→  6029→          { name: "stain", cls: "bg-journal-stain", border: true, hex: "#E8DCC8" },
+   173→  6030→          { name: "margin", cls: "bg-journal-margin", border: true, hex: "#C9B99A" },
+   174→  6031→          { name: "paper-dark", cls: "bg-journal-paper-dark", border: true, hex: "#F0E6D3" },
+   175→  6032→        ].map((c) => (
+   176→  6033→          <div key={c.name} className="text-center">
+   177→  6034→            <div className={`h-14 rounded-sm ${c.cls} ${c.border ? "border border-journal-rule/50" : ""}`} />
+   178→  6035→            <p className="text-[10px] text-journal-sepia uppercase tracking-wider mt-1.5 font-semibold">{c.name}</p>
+   179→  6036→            <p className="text-[10px] font-mono text-journal-sepia/60">{c.hex}</p>
+   180→  6037→          </div>
+   181→  6038→        ))}
+   182→  6039→      </div>
+   183→  6040→
+   184→  6041→      <h3 className="font-serif text-lg font-semibold text-journal-ink mb-4">CSS Utilities</h3>
+   185→  6042→      <p className="text-sm text-journal-ink-light font-serif leading-relaxed mb-4">
+   186→  6043→        Pure CSS classes for paper effects. No component import needed — just add the class to any element.
+   187→  6044→      </p>
+   188→  6045→      <CodeBlock>{`<div className="journal-lined journal-margin-line journal-vignette p-6">
+   189→  6046→  <p className="font-serif text-journal-ink-light">Notebook paper effect.</p>
+   190→  6047→</div>
+   191→  6048→
+   192→  6049→<div className="journal-texture journal-vignette p-8">
+   193→  6050→  <p className="font-serif">Aged paper with texture overlay.</p>
+   194→  6051→</div>
+   195→  6052→
+   196→  6053→<div className="journal-spiral journal-lined p-4 pr-6">
+   197→  6054→  <p className="font-serif">Spiral-bound notebook.</p>
+   198→  6055→</div>
+   199→  6056→
+   200→  6057→<p className="font-serif journal-drop-cap">Drop cap paragraph...</p>`}</CodeBlock>
+   201→  6058→
+   202→  6059→      <div className="mt-6 overflow-x-auto border border-journal-rule rounded-sm text-xs">
+   203→  6060→        <table className="w-full">
+   204→  6061→          <thead className="bg-journal-paper-dark border-b border-journal-rule">
+   205→  6062→            <tr>
+   206→  6063→              <th className="px-3 py-2 text-left uppercase tracking-wider text-journal-sepia font-semibold text-[10px]">Class</th>
+   207→  6064→              <th className="px-3 py-2 text-left uppercase tracking-wider text-journal-sepia font-semibold text-[10px]">Effect</th>
+   208→  6065→            </tr>
+   209→  6066→          </thead>
+   210→  6067→          <tbody className="divide-y divide-journal-rule/50 font-serif">
+   211→  6068→            {[
+   212→  6069→              ["journal-lined", "Ruled lines at 32px"],
+   213→  6070→              ["journal-lined-tight", "Ruled lines at 24px"],
+   214→  6071→              ["journal-margin-line", "Burgundy left border + padding"],
+   215→  6072→              ["journal-texture", "Aged paper stain overlay"],
+   216→  6073→              ["journal-vignette", "Inset shadow edge darkening"],
+   217→  6074→              ["journal-drop-cap", "Burgundy drop cap on first letter"],
+   218→  6075→              ["journal-spiral", "Decorative binding holes"],
+   219→  6076→              ["journal-torn-top", "SVG torn edge at top"],
+   220→  6077→              ["journal-torn-bottom", "SVG torn edge at bottom"],
+   221→  6078→            ].map(([cls, effect]) => (
+   222→  6079→              <tr key={cls}><td className="px-3 py-2.5 font-mono text-journal-burgundy font-semibold">{cls}</td><td className="px-3 py-2.5 text-journal-ink-light">{effect}</td></tr>
+   223→  6080→            ))}
+   224→  6081→          </tbody>
+   225→  6082→        </table>
+   226→  6083→      </div>
+   227→  6084→
+   228→  6085→      <h3 className="font-serif text-lg font-semibold text-journal-ink mb-4 mt-10">Custom Fonts</h3>
+   229→  6086→      <p className="text-sm text-journal-ink-light font-serif leading-relaxed mb-4">
+   230→  6087→        The system uses three Google Fonts but is configured with CSS custom properties so you can swap them. Set <code className="text-xs bg-journal-paper-dark px-1.5 py-0.5 rounded font-mono">--font-serif</code>, <code className="text-xs bg-journal-paper-dark px-1.5 py-0.5 rounded font-mono">--font-display</code>, and <code className="text-xs bg-journal-paper-dark px-1.5 py-0.5 rounded font-mono">--font-mono</code> in your <code className="text-xs bg-journal-paper-dark px-1.5 py-0.5 rounded font-mono">@theme</code> block.
+   231→  6088→      </p>
+   232→  6089→      <CodeBlock>{`/* Default fonts */
+   233→  6090→--font-serif: var(--font-lora);          /* Body text */
+   234→  6091→--font-display: var(--font-playfair);    /* Headings */
+   235→  6092→--font-mono: var(--font-geist-mono);     /* Code */
+   236→  6093→
+   237→  6094→/* Override with your own */
+   238→  6095→--font-serif: "Georgia", serif;
+   239→  6096→--font-display: "Garamond", serif;`}</CodeBlock>
+   240→  6097→    </section>
+   241→  6098→  );
+   242→  6099→}
+   243→  6100→
+   244→  6101→/* ─── Component Doc Page (per component) ─── */
+   245→  6102→function ComponentDocPage({ entryKey }: { entryKey: string }) {
+   246→  6103→  const entry = registry[entryKey];
+   247→  6104→  if (!entry) return <p className="text-journal-sepia">Component not found.</p>;
+   248→  6105→
+   249→  6106→  const installCmd = `bun run cli/install.ts ${entryKey}`;
+   250→  6107→  const componentName = entry.name;
+   251→  6108→
+   252→  6109→  return (
+   253→  6110→    <section id={entry.name.replace("Journal", "").toLowerCase().replace(/\s+/g, "-")} className="scroll-mt-20 py-10 border-t border-journal-rule">
+   254→  6111→      <ComponentHeader name={componentName} description={entry.description} filename={entry.file} />
+   255→  6112→
+   256→  6113→      <InstallCommand command={installCmd} />
+   257→  6114→
+   258→  6115→      <h3 className="font-serif text-lg font-semibold text-journal-ink mt-10 mb-4">Preview</h3>
+   259→  6116→      <ComponentPreview>
+   260→  6117→        <ComponentPreviewDemo name={entryKey} />
+   261→  6118→      </ComponentPreview>
+   262→  6119→
+   263→  6120→      <h3 className="font-serif text-lg font-semibold text-journal-ink mt-10 mb-4">Source Code</h3>
+   264→  6121→      <CodeBlock filename={entry.file}>{entry.code}</CodeBlock>
+   265→  6122→
+   266→  6123→      <h3 className="font-serif text-lg font-semibold text-journal-ink mt-10 mb-2">Dependencies</h3>
+   267→  6124→      <p className="text-sm text-journal-ink-light font-serif mb-6">
+   268→  6125→        {entry.dependencies.length > 0
+   269→  6126→          ? entry.dependencies.map((d) => <code key={d} className="text-xs bg-journal-paper-dark px-1.5 py-0.5 rounded font-mono mr-2">{d}</code>)
+   270→  6127→          : <span className="text-journal-sepia italic">None — fully self-contained.</span>}
+   271→  6128→      </p>
+   272→  6129→    </section>
+   273→  6130→  );
+   274→  6131→}
+   275→  6132→
+   276→  6133→/* ─── Live Preview Demos ─── */
+   277→  6134→function ComponentPreviewDemo({ name }: { name: string }) {
+   278→  6135→  switch (name) {
+   279→  6136→    case "journal-heading":
+   280→  6137→      return (
+   281→  6138→        <div className="space-y-4">
+   282→  6139→          <h1 className="font-serif text-3xl font-bold text-journal-ink tracking-tight">Display Heading (H1)</h1>
+   283→  6140→          <h2 className="font-serif text-2xl font-semibold text-journal-ink tracking-tight border-b border-journal-rule pb-2">Section Heading (H2)</h2>
+   284→  6141→          <h3 className="font-serif text-xl font-semibold text-journal-ink">Subsection (H3)</h3>
+   285→  6142→          <h4 className="font-serif text-lg font-semibold text-journal-ink-light uppercase tracking-widest">Overline Label (H4)</h4>
+   286→  6143→        </div>
+   287→  6144→      );
+   288→  6145→    case "journal-body":
+   289→  6146→      return (
+   290→  6147→        <div className="space-y-4">
+   291→  6148→          <p className="font-serif text-base leading-[1.8] text-journal-ink-light">Standard body text with comfortable line-height for long-form reading and journal-style content.</p>
+   292→  6149→          <p className="font-serif text-lg leading-[1.9] text-journal-ink font-medium" style={{firstLetter:"3.5em", firstLetterFontFamily:"serif", firstLetterFontWeight:"bold", firstLetterFloat:"left", firstLetterLineHeight:"0.8", firstLetterPaddingRight:"0.5em", firstLetterPaddingTop:"0.05em", firstLetterColor:"#5C1A1B"}}>Typography is the craft of endowing human language with a durable visual form, and yet it also participates intimately in the give-and-take of civilization.</p>
+   293→  6150→        </div>
+   294→  6151→      );
+   295→  6152→    case "journal-lead":
+   296→  6153→      return <p className="font-serif text-xl leading-[1.85] text-journal-ink font-medium">This is a lead paragraph designed to draw the reader into the beginning of an article or section with larger, bolder text.</p>;
+   297→  6154→    case "journal-caption":
+   298→  6155→      return <figcaption className="text-sm text-journal-sepia italic mt-2">Fig. 1 — The anatomy of a journal entry, showing metadata, heading, body, and tags.</figcaption>;
+   299→  6156→    case "journal-date":
+   300→  6157→      return <time className="text-xs uppercase tracking-[0.2em] text-journal-sepia font-medium">Sunday, December 15, 2024</time>;
+   301→  6158→    case "journal-blockquote":
+   302→  6159→      return (
+   303→  6160→        <div className="space-y-6">
+   304→  6161→          <blockquote className="border-l-[3px] border-journal-gold pl-6 py-1">
+   305→  6162→            <div className="text-lg text-journal-ink italic font-serif leading-[1.75]">I went to the woods because I wished to live deliberately, to front only the essential facts of life.</div>
+   306→  6163→            <cite className="block mt-3 text-sm not-italic text-journal-sepia"><span className="font-medium text-journal-ink-light">Henry David Thoreau</span></cite>
+   307→  6164→          </blockquote>
+   308→  6165→          <blockquote className="border-l-2 border-journal-burgundy pl-5 py-2 bg-journal-stain/30 rounded-r-sm">
+   309→  6166→            <div className="text-base italic text-journal-ink-light font-serif leading-relaxed">A note-style blockquote with a tinted background for editorial asides.</div>
+   310→  6167→          </blockquote>
+   311→  6168→        </div>
+   312→  6169→      );
+   313→  6170→    case "journal-pull-quote":
+   314→  6171→      return (
+   315→  6172→        <aside className="py-4 border-y border-journal-rule">
+   316→  6173→          <blockquote className="max-w-2xl mx-auto text-center">
+   317→  6174→            <div className="text-2xl font-serif text-journal-ink leading-snug tracking-tight">The page is not merely a surface for marks — it is a field of meaning.</div>
+   318→  6175→          </blockquote>
+   319→  6176→        </aside>
+   320→  6177→      );
+   321→  6178→    case "journal-divider":
+   322→  6179→      return (
+   323→  6180→        <div className="space-y-4">
+   324→  6181→          <hr className="border-t border-journal-rule" />
+   325→  6182→          <div className="flex items-center justify-center gap-3"><span className="flex-1 h-px bg-journal-rule" /><span className="text-journal-gold text-lg select-none">&#10045;</span><span className="flex-1 h-px bg-journal-rule" /></div>
+   326→  6183→          <div className="flex items-center justify-center gap-3"><span className="flex-1 h-px bg-journal-rule" /><span className="w-1.5 h-1.5 rounded-full bg-journal-burgundy" /><span className="flex-1 h-px bg-journal-rule" /></div>
+   327→  6184→        </div>
+   328→  6185→      );
+   329→  6186→    case "journal-highlight":
+   330→  6187→      return <p className="font-serif text-base leading-[1.8] text-journal-ink-light">Use <mark className="bg-journal-gold/20 text-journal-ink px-1 rounded-sm no-underline">highlighted text</mark> to draw attention to key passages in your journal.</p>;
+   331→  6188→    case "journal-small-caps":
+   332→  6189→      return <p className="font-serif text-base text-journal-ink-light">This is written in <span className="text-[0.75em] uppercase tracking-[0.15em] font-semibold">Small Capitals</span> for a refined editorial look.</p>;
+   333→  6190→    case "journal-em-dash":
+   334→  6191→      return <p className="font-serif text-base leading-[1.8] text-journal-ink-light">The em dash<span className="text-journal-ink/40 mx-0.5">—</span>a favorite of literary prose<span className="text-journal-ink/40 mx-0.5">—</span>adds a contemplative pause.</p>;
+   335→  6192→    case "journal-entry-card":
+   336→  6193→      return (
+   337→  6194→        <article className="bg-journal-paper rounded-sm border border-journal-rule p-6 border-l-4 border-l-journal-burgundy" style={{boxShadow:"inset 0 0 100px rgba(44,24,16,0.08)"}}>
+   338→  6195→          <header className="mb-4">
+   339→  6196→            <div className="flex items-center gap-3 mb-3">
+   340→  6197→              <time className="text-xs uppercase tracking-[0.2em] text-journal-sepia">Nov 3, 2024</time>
+   341→  6198→              <span className="text-xs uppercase tracking-wider text-journal-burgundy font-semibold bg-journal-burgundy/10 px-2 py-0.5 rounded-sm">Featured</span>
+   342→  6199→            </div>
+   343→  6200→            <h3 className="font-serif text-xl font-semibold text-journal-ink leading-snug">On the Art of Observation</h3>
+   344→  6201→          </header>
+   345→  6202→          <div className="text-journal-ink-light font-serif leading-[1.8] text-base">The practiced observer sees not with the eyes alone but with the accumulated weight of experience.</div>
+   346→  6203→          <div className="flex flex-wrap gap-2 mt-5 pt-4 border-t border-journal-rule/50">
+   347→  6204→            <span className="text-xs text-journal-sepia bg-journal-paper-dark px-2.5 py-1 rounded-sm border border-journal-rule/50">Nature</span>
+   348→  6205→            <span className="text-xs text-journal-sepia bg-journal-paper-dark px-2.5 py-1 rounded-sm border border-journal-rule/50">Essays</span>
+   349→  6206→          </div>
+   350→  6207→        </article>
+   351→  6208→      );
+   352→  6209→    case "journal-note-box":
+   353→  6210→      return (
+   354→  6211→        <div className="space-y-4">
+   355→  6212→          <aside className="border-l-2 border-l-journal-forest pl-5 py-3 pr-4 rounded-r-sm bg-journal-forest/5" role="note">
+   356→  6213→            <div className="text-sm font-semibold uppercase tracking-wider mb-2 text-journal-forest"><span className="mr-2 opacity-60">i</span>Reference</div>
+   357→  6214→            <div className="text-sm text-journal-ink-light font-serif leading-relaxed">This design system uses three Google Fonts for optimal editorial rendering.</div>
+   358→  6215→          </aside>
+   359→  6216→          <aside className="border-l-2 border-l-journal-gold pl-5 py-3 pr-4 rounded-r-sm bg-journal-gold/5" role="note">
+   360→  6217→            <div className="text-sm font-semibold uppercase tracking-wider mb-2 text-journal-gold"><span className="mr-2 opacity-60">&#10047;</span>Tip</div>
+   361→  6218→            <div className="text-sm text-journal-ink-light font-serif leading-relaxed">Combine the lined paper utility with the margin-line class for a complete notebook effect.</div>
+   362→  6219→          </aside>
+   363→  6220→          <aside className="border-l-2 border-l-journal-burgundy pl-5 py-3 pr-4 rounded-r-sm bg-journal-burgundy/5" role="note">
+   364→  6221→            <div className="text-sm font-semibold uppercase tracking-wider mb-2 text-journal-burgundy"><span className="mr-2 opacity-60">!</span>Warning</div>
+   365→  6222→            <div className="text-sm text-journal-ink-light font-serif leading-relaxed">The drop cap style should only be applied to the first paragraph of a section.</div>
+   366→  6223→          </aside>
+   367→  6224→        </div>
+   368→  6225→      );
+   369→  6226→    case "journal-figure":
+   370→  6227→      return (
+   371→  6228→        <figure>
+   372→  6229→          <div className="bg-journal-paper-dark/50 rounded-sm border border-journal-rule/50 p-6 text-center">
+   373→  6230→            <div className="space-y-2">
+   374→  6231→              <div className="h-3 w-24 bg-journal-sepia/20 rounded-full mx-auto" />
+   375→  6232→              <div className="h-4 w-48 bg-journal-ink/10 rounded mx-auto" />
+   376→  6233→              <div className="h-2 w-full bg-journal-rule rounded-full" />
+   377→  6234→              <div className="h-2 w-3/4 bg-journal-rule rounded-full mx-auto" />
+   378→  6235→            </div>
+   379→  6236→          </div>
+   380→  6237→          <figcaption className="mt-3 pl-1">
+   381→  6238→            <span className="text-xs font-semibold text-journal-burgundy uppercase tracking-wider">Fig. 1</span>
+   382→  6239→            <span className="text-sm text-journal-sepia italic ml-2">Anatomy of a journal entry structure.</span>
+   383→  6240→          </figcaption>
+   384→  6241→        </figure>
+   385→  6242→      );
+   386→  6243→    case "journal-button":
+   387→  6244→      return (
+   388→  6245→        <div className="space-y-4">
+   389→  6246→          <div className="flex flex-wrap gap-3">
+   390→  6247→            <button className="inline-flex items-center justify-center font-serif font-semibold tracking-wide uppercase transition-all duration-200 rounded-sm cursor-pointer text-xs px-7 py-3.5 bg-journal-ink text-journal-paper hover:bg-journal-ink-light">Primary Large</button>
+   391→  6248→            <button className="inline-flex items-center justify-center font-serif font-semibold tracking-wide uppercase transition-all duration-200 rounded-sm cursor-pointer text-xs px-5 py-2.5 bg-journal-ink text-journal-paper hover:bg-journal-ink-light">Primary</button>
+   392→  6249→            <button className="inline-flex items-center justify-center font-serif font-semibold tracking-wide uppercase transition-all duration-200 rounded-sm cursor-pointer text-xs px-3 py-1.5 bg-journal-ink text-journal-paper hover:bg-journal-ink-light">Small</button>
+   393→  6250→          </div>
+   394→  6251→          <div className="flex flex-wrap gap-3">
+   395→  6252→            <button className="inline-flex items-center justify-center font-serif font-semibold tracking-wide uppercase transition-all duration-200 rounded-sm cursor-pointer text-xs px-5 py-2.5 bg-transparent text-journal-ink border border-journal-ink hover:bg-journal-ink hover:text-journal-paper">Secondary</button>
+   396→  6253→            <button className="inline-flex items-center justify-center font-serif font-semibold tracking-wide uppercase transition-all duration-200 rounded-sm cursor-pointer text-xs px-5 py-2.5 bg-transparent text-journal-ink-light hover:bg-journal-paper-dark hover:text-journal-ink">Ghost</button>
+   397→  6254→            <button className="inline-flex items-center justify-center font-serif font-semibold tracking-wide uppercase transition-all duration-200 rounded-sm cursor-pointer text-xs px-5 py-2.5 bg-transparent text-journal-burgundy underline underline-offset-4 decoration-journal-burgundy/30 hover:decoration-journal-burgundy p-0">Link Style</button>
+   398→  6255→          </div>
+   399→  6256→        </div>
+   400→  6257→      );
+   401→  6258→    case "journal-input":
+   402→  6259→      return (
+   403→  6260→        <div className="max-w-md space-y-4">
+   404→  6261→          <div className="space-y-1.5">
+   405→  6262→            <label className="block text-xs uppercase tracking-[0.15em] text-journal-sepia font-medium">Title</label>
+   406→  6263→            <input className="w-full bg-transparent border border-journal-rule rounded-sm px-3 py-2.5 text-base text-journal-ink font-serif placeholder:text-journal-sepia/60 focus:outline-none focus:border-journal-burgundy focus:ring-1 focus:ring-journal-burgundy/20 transition-colors" placeholder="Enter the entry title..." />
+   407→  6264→            <p className="text-xs text-journal-sepia">A clear title helps you find entries later.</p>
+   408→  6265→          </div>
+   409→  6266→        </div>
+   410→  6267→      );
+   411→  6268→    case "journal-textarea":
+   412→  6269→      return (
+   413→  6270→        <div className="max-w-md space-y-4">
+   414→  6271→          <div className="space-y-1.5">
+   415→  6272→            <label className="block text-xs uppercase tracking-[0.15em] text-journal-sepia font-medium">Journal Entry</label>
+   416→  6273→            <textarea className="w-full bg-transparent border border-journal-rule rounded-sm px-3 py-2.5 text-base text-journal-ink font-serif placeholder:text-journal-sepia/60 focus:outline-none focus:border-journal-burgundy focus:ring-1 focus:ring-journal-burgundy/20 transition-colors resize-y min-h-[100px]" placeholder="What happened today?" />
+   417→  6274→          </div>
+   418→  6275→        </div>
+   419→  6276→      );
+   420→  6277→    case "journal-tag":
+   421→  6278→      return (
+   422→  6279→        <div className="flex flex-wrap gap-2">
+   423→  6280→          <span className="inline-flex items-center text-xs tracking-wider uppercase px-2.5 py-1 rounded-sm border bg-journal-ink text-journal-paper border-journal-ink">Nature</span>
+   424→  6281→          <span className="inline-flex items-center text-xs tracking-wider uppercase px-2.5 py-1 rounded-sm border bg-transparent text-journal-sepia border-journal-rule">Travel</span>
+   425→  6282→          <span className="inline-flex items-center text-xs tracking-wider uppercase px-2.5 py-1 rounded-sm border bg-journal-ink text-journal-paper border-journal-ink">Essays</span>
+   426→  6283→          <span className="inline-flex items-center text-xs tracking-wider uppercase px-2.5 py-1 rounded-sm border bg-transparent text-journal-sepia border-journal-rule">Letters</span>
+   427→  6284→        </div>
+   428→  6285→      );
+   429→  6286→    case "journal-tabs":
+   430→  6287→      return <TabDemo />;
+   431→  6288→    case "journal-table":
+   432→  6289→      return (
+   433→  6290→        <div className="border border-journal-rule rounded-sm overflow-hidden">
+   434→  6291→          <table className="w-full text-sm">
+   435→  6292→            <thead className="bg-journal-paper-dark border-b border-journal-rule">
+   436→  6293→              <tr>
+   437→  6294→                <th className="px-4 py-3 text-left text-xs uppercase tracking-[0.15em] text-journal-sepia font-semibold">Name</th>
+   438→  6295→                <th className="px-4 py-3 text-left text-xs uppercase tracking-[0.15em] text-journal-sepia font-semibold">Date</th>
+   439→  6296→                <th className="px-4 py-3 text-left text-xs uppercase tracking-[0.15em] text-journal-sepia font-semibold">Category</th>
+   440→  6297→              </tr>
+   441→  6298→            </thead>
+   442→  6299→            <tbody className="divide-y divide-journal-rule/50">
+   443→  6300→              <tr><td className="px-4 py-3 text-journal-ink-light">On Observation</td><td className="px-4 py-3 text-journal-ink-light">Nov 3</td><td className="px-4 py-3 text-journal-ink-light">Essay</td></tr>
+   444→  6301→              <tr><td className="px-4 py-3 text-journal-ink-light">Letters to a Naturalist</td><td className="px-4 py-3 text-journal-ink-light">Oct 17</td><td className="px-4 py-3 text-journal-ink-light">Letters</td></tr>
+   445→  6302→            </tbody>
+   446→  6303→          </table>
+   447→  6304→        </div>
+   448→  6305→      );
+   449→  6306→    case "journal-unordered-list":
+   450→  6307→      return (
+   451→  6308→        <ul className="my-2 space-y-2 text-journal-ink-light font-serif leading-[1.8]">
+   452→  6309→          {["Hand-bound leather journals with acid-free paper", "Fountain pens with archival-quality ink", "A quiet corner with natural light", "The willingness to write badly at first"].map((t) => (
+   453→  6310→            <li key={t} className="flex items-start gap-2.5"><span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-journal-burgundy shrink-0" /><span>{t}</span></li>
+   454→  6311→          ))}
+   455→  6312→        </ul>
+   456→  6313→      );
+   457→  6314→    case "journal-ordered-list":
+   458→  6315→      return (
+   459→  6316→        <ol className="my-2 space-y-2 text-journal-ink-light font-serif leading-[1.8] list-none">
+   460→  6317→          {["Choose your medium and tools", "Set a regular time for journaling", "Begin with observations, not judgments", "Review and reflect weekly"].map((t, i) => (
+   461→  6318→            <li key={t} className="flex items-start gap-3"><span className="text-sm font-semibold text-journal-burgundy min-w-[1.5rem] pt-0.5">{String(i+1).padStart(2,"0")}.</span><span>{t}</span></li>
+   462→  6319→          ))}
+   463→  6320→        </ol>
+   464→  6321→      );
+   465→  6322→    default:
+   466→  6323→      return <p className="text-journal-sepia italic">Preview not available for this component.</p>;
+   467→  6324→  }
+   468→  6325→}
+   469→  6326→
+   470→  6327→/* ─── Tabs Demo (needs state) ─── */
+   471→  6328→function TabDemo() {
+   472→  6329→  const [active, setActive] = React.useState("prose");
+   473→  6330→  const tabs = [
+   474→  6331→    { id: "prose", label: "Prose", content: "Prose journaling is the most common form — a free-flowing narrative that captures events, thoughts, and emotions of the day." },
+   475→  6332→    { id: "poetry", label: "Poetry", content: "The poem in a journal occupies a unique space — it is neither fully public nor entirely private, a form of compressed observation." },
+   476→  6333→  ];
+   477→  6334→  const current = tabs.find((t) => t.id === active);
+   478→  6335→  return (
+   479→  6336→    <div className="border border-journal-rule rounded-sm overflow-hidden">
+   480→  6337→      <nav className="flex border-b border-journal-rule bg-journal-paper-dark/30" role="tablist">
+   481→  6338→        {tabs.map((t) => (
+   482→  6339→          <button key={t.id} role="tab" aria-selected={active === t.id} onClick={() => setActive(t.id)}
+   483→  6340→            className={`flex-1 px-4 py-2.5 text-xs uppercase tracking-wider font-medium transition-colors cursor-pointer ${active === t.id ? "text-journal-ink border-b-2 border-b-journal-burgundy bg-journal-paper" : "text-journal-sepia hover:text-journal-ink"}`}
+   484→  6341→          >{t.label}</button>
+   485→  6342→        ))}
+   486→  6343→      </nav>
+   487→  6344→      <div className="p-5 font-serif text-journal-ink-light leading-relaxed" role="tabpanel">{current?.content}</div>
+   488→  6345→    </div>
+   489→  6346→  );
+   490→  6347→}
+   491→  6348→
+   492→  6349→/* ═══════════════════════════════════════════════════════════
+   493→  6350→   MAIN APP
+   494→  6351→   ═══════════════════════════════════════════════════════════ */
+   495→  6352→export default function Home() {
+   496→  6353→  const hash = useHash();
+   497→  6354→  const [sidebarOpen, setSidebarOpen] = React.useState(false);
+   498→  6355→  const { staticLinks, catLinks } = getSidebarData();
+   499→  6356→
+   500→  6357→  /* Map hash to component key */
+   501→  6358→  const componentKey = Object.keys(registry).find((k) =>
+   502→  6359→    k.replace("Journal", "").toLowerCase().replace(/\s+/g, "-") === hash
+   503→  6360→  );
+   504→  6361→
+   505→  6362→  return (
+   506→  6363→    <div className="min-h-screen flex flex-col bg-journal-paper" style={{fontFamily:"var(--font-lora), 'Lora', Georgia, serif"}}>
+   507→  6364→      {/* Mobile top bar */}
+   508→  6365→      <div className="md:hidden sticky top-0 z-40 bg-journal-paper border-b border-journal-rule px-4 py-3 flex items-center justify-between">
+   509→  6366→        <button onClick={() => setSidebarOpen(true)} className="p-1 text-journal-ink" aria-label="Menu">
+   510→  6367→          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+   511→  6368→        </button>
+   512→  6369→        <span className="font-serif font-bold text-journal-ink">Journal DS</span>
+   513→  6370→        <span className="w-5" />
+   514→  6371→      </div>
+   515→  6372→
+   516→  6373→      <div className="flex flex-1">
+   517→  6374→        {/* Sidebar */}
+   518→  6375→        <SidebarNav
+   519→  6376→          categories={[
+   520→  6377→            { id: "general", label: "Getting Started", components: staticLinks.map((l) => ({ name: l.name, slug: l.slug })) },
+   521→  6378→            ...catLinks,
+   522→  6379→          ]}
+   523→  6380→          activeSection={hash}
+   524→  6381→          onNavigate={navigate}
+   525→  6382→          isOpen={sidebarOpen}
+   526→  6383→          onClose={() => setSidebarOpen(false)}
+   527→  6384→        />
+   528→  6385→
+   529→  6386→        {/* Main content */}
+   530→  6387→        <main className="flex-1 min-w-0">
+   531→  6388→          <div className="max-w-4xl mx-auto px-5 md:px-10 lg:px-16 py-6 md:py-10">
+   532→  6389→            {/* Hero always visible */}
+   533→  6390→            <HeroSection />
+   534→  6391→            <InstallationSection />
+   535→  6392→            <ThemingSection />
+   536→  6393→
+   537→  6394→            {/* Component pages */}
+   538→  6395→            <div id="components">
+   539→  6396→              {Object.entries(registry).map(([key]) => (
+   540→  6397→                <ComponentDocPage key={key} entryKey={key} />
+   541→  6398→              ))}
+   542→  6399→            </div>
+   543→  6400→
+   544→  6401→            {/* Footer */}
+   545→  6402→            <footer className="mt-20 pt-8 border-t border-journal-rule pb-10">
+   546→  6403→              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+   547→  6404→                <div>
+   548→  6405→                  <p className="font-serif text-sm font-semibold text-journal-ink">Journal Design System</p>
+   549→  6406→                  <p className="text-xs text-journal-sepia mt-1">Open source. Built with Tailwind CSS 4. Inspired by the art of journaling.</p>
+   550→  6407→                </div>
+   551→  6408→                <p className="text-xs text-journal-sepia">MIT License</p>
+   552→  6409→              </div>
+   553→  6410→            </footer>
+   554→  6411→          </div>
+   555→  6412→        </main>
+   556→  6413→      </div>
+   557→  6414→    </div>
+   558→  6415→  );
+   559→  6416→}
+   560→  6417→
+   561→
+   562→[showing lines 5858-6417 of 16191; use offset=6418 with limit to continue reading]

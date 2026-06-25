@@ -4,10 +4,55 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* ── Journal Design System Tokens ── */
+
+  /* Fonts */
+  --font-serif: var(--font-lora);
+  --font-display: var(--font-playfair);
+  --font-mono: var(--font-geist-mono);
+
+  /* Core semantic colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Journal-specific palette */
+  --color-journal-paper: var(--journal-paper);
+  --color-journal-paper-dark: var(--journal-paper-dark);
+  --color-journal-ink: var(--journal-ink);
+  --color-journal-ink-light: var(--journal-ink-light);
+  --color-journal-sepia: var(--journal-sepia);
+  --color-journal-warm: var(--journal-warm);
+  --color-journal-burgundy: var(--journal-burgundy);
+  --color-journal-forest: var(--journal-forest);
+  --color-journal-gold: var(--journal-gold);
+  --color-journal-rule: var(--journal-rule);
+  --color-journal-margin: var(--journal-margin);
+  --color-journal-stain: var(--journal-stain);
+
+  /* Chart colors */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Sidebar colors */
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -16,27 +61,8 @@
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
+
+  /* Radii */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -44,72 +70,103 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --radius: 0.25rem;
+
+  /* Journal Light Theme */
+  --background: #FDFAF5;
+  --foreground: #2C1810;
+  --card: #FFFCF7;
+  --card-foreground: #2C1810;
+  --popover: #FFFCF7;
+  --popover-foreground: #2C1810;
+  --primary: #5C1A1B;
+  --primary-foreground: #FDFAF5;
+  --secondary: #F0E6D3;
+  --secondary-foreground: #3D2B1F;
+  --muted: #EDE4D3;
+  --muted-foreground: #7A6B5D;
+  --accent: #D4C5A9;
+  --accent-foreground: #2C1810;
+  --destructive: #9B2C2C;
+  --border: #D4C5A9;
+  --input: #D4C5A9;
+  --ring: #5C1A1B;
+  --chart-1: #5C1A1B;
+  --chart-2: #2D5F3E;
+  --chart-3: #B8860B;
+  --chart-4: #6B4226;
+  --chart-5: #8B7355;
+
+  /* Journal-specific tokens */
+  --journal-paper: #FDFAF5;
+  --journal-paper-dark: #F0E6D3;
+  --journal-ink: #2C1810;
+  --journal-ink-light: #5A4636;
+  --journal-sepia: #8B7355;
+  --journal-warm: #D4C5A9;
+  --journal-burgundy: #5C1A1B;
+  --journal-forest: #2D5F3E;
+  --journal-gold: #B8860B;
+  --journal-rule: #D9CBBA;
+  --journal-margin: #C9B99A;
+  --journal-stain: #E8DCC8;
+
+  --sidebar: #F5EDDC;
+  --sidebar-foreground: #2C1810;
+  --sidebar-primary: #5C1A1B;
+  --sidebar-primary-foreground: #FDFAF5;
+  --sidebar-accent: #E8DCC8;
+  --sidebar-accent-foreground: #2C1810;
+  --sidebar-border: #D4C5A9;
+  --sidebar-ring: #5C1A1B;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: #1A1410;
+  --foreground: #E8DCC8;
+  --card: #221C16;
+  --card-foreground: #E8DCC8;
+  --popover: #221C16;
+  --popover-foreground: #E8DCC8;
+  --primary: #D4A574;
+  --primary-foreground: #1A1410;
+  --secondary: #2D2518;
+  --secondary-foreground: #E8DCC8;
+  --muted: #2D2518;
+  --muted-foreground: #A89880;
+  --accent: #3D3225;
+  --accent-foreground: #E8DCC8;
+  --destructive: #E57373;
+  --border: #3D3225;
+  --input: #3D3225;
+  --ring: #D4A574;
+  --chart-1: #D4A574;
+  --chart-2: #6B9B7A;
+  --chart-3: #DAA520;
+  --chart-4: #A0724A;
+  --chart-5: #8B7355;
+
+  --journal-paper: #1A1410;
+  --journal-paper-dark: #221C16;
+  --journal-ink: #E8DCC8;
+  --journal-ink-light: #B8A898;
+  --journal-sepia: #A89880;
+  --journal-warm: #3D3225;
+  --journal-burgundy: #D4A574;
+  --journal-forest: #6B9B7A;
+  --journal-gold: #DAA520;
+  --journal-rule: #3D3225;
+  --journal-margin: #2D2518;
+  --journal-stain: #332A1F;
+
+  --sidebar: #221C16;
+  --sidebar-foreground: #E8DCC8;
+  --sidebar-primary: #D4A574;
+  --sidebar-primary-foreground: #1A1410;
+  --sidebar-accent: #2D2518;
+  --sidebar-accent-foreground: #E8DCC8;
+  --sidebar-border: #3D3225;
+  --sidebar-ring: #D4A574;
 }
 
 @layer base {
@@ -118,5 +175,148 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-lora), "Lora", Georgia, serif;
+  }
+  /* Headings always render in the display serif. */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-playfair), "Playfair Display", Georgia, serif;
+  }
+  /* Code & pre use the mono stack. */
+  code, pre, kbd {
+    font-family: var(--font-geist-mono), "JetBrains Mono", ui-monospace, monospace;
   }
 }
+
+/* ── Journal Utility Classes ── */
+
+/* Lined paper effect */
+@layer utilities {
+  .journal-lined {
+    background-image:
+      repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 31px,
+        var(--journal-rule) 31px,
+        var(--journal-rule) 32px
+      );
+    background-position: 0 16px;
+  }
+
+  .journal-lined-tight {
+    background-image:
+      repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 23px,
+        var(--journal-rule) 23px,
+        var(--journal-rule) 24px
+      );
+    background-position: 0 12px;
+  }
+
+  /* Margin line (red/colored line on left) */
+  .journal-margin-line {
+    border-left: 2px solid var(--journal-burgundy);
+    padding-left: 2rem;
+  }
+
+  /* Paper texture overlay */
+  .journal-texture {
+    position: relative;
+  }
+  .journal-texture::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, var(--journal-stain) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, var(--journal-stain) 0%, transparent 40%),
+      radial-gradient(ellipse at 60% 80%, var(--journal-stain) 0%, transparent 45%);
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .journal-texture > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Torn paper edge */
+  .journal-torn-top {
+    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,0 L1200,0 L1200,5 Q1150,15 1100,5 Q1050,18 1000,5 Q950,12 900,5 Q850,18 800,5 Q750,15 700,5 Q650,18 600,5 Q550,12 500,5 Q450,18 400,5 Q350,15 300,5 Q250,12 200,5 Q150,18 100,5 Q50,12 0,5 Z' fill='white'/%3E%3C/svg%3E");
+    mask-size: 100% 20px;
+    mask-repeat: no-repeat;
+    mask-position: top;
+    padding-top: 20px;
+  }
+
+  .journal-torn-bottom {
+    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,15 Q50,5 100,15 Q150,2 200,15 Q250,8 300,15 Q350,2 400,15 Q450,5 500,15 Q550,2 600,15 Q650,8 700,15 Q750,2 800,15 Q850,5 900,15 Q950,2 1000,15 Q1050,8 1100,15 Q1150,2 1200,15 L1200,20 L0,20 Z' fill='white'/%3E%3C/svg%3E");
+    mask-size: 100% 20px;
+    mask-repeat: no-repeat;
+    mask-position: bottom;
+    padding-bottom: 20px;
+  }
+
+  /* Aging vignette */
+  .journal-vignette {
+    box-shadow: inset 0 0 100px rgba(44, 24, 16, 0.08);
+  }
+
+  /* Drop cap initial */
+  .journal-drop-cap::first-letter {
+    float: left;
+    font-family: var(--font-display), 'Playfair Display', serif;
+    font-size: 3.5em;
+    line-height: 0.8;
+    padding-right: 0.1em;
+    padding-top: 0.05em;
+    color: var(--journal-burgundy);
+    font-weight: 700;
+  }
+
+  /* Notebook spiral binding holes */
+  .journal-spiral {
+    background-image:
+      radial-gradient(circle at 24px 0px, var(--border) 6px, transparent 6px);
+    background-size: 100% 80px;
+    background-repeat: repeat-y;
+    padding-top: 8px;
+    padding-left: 48px;
+  }
+
+  /* Editor's small caps eyebrow label. */
+  .journal-eyebrow {
+    font-family: var(--font-geist-mono), "JetBrains Mono", monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--journal-sepia);
+  }
+}
+
+/* Custom scrollbar for code blocks and scroll areas. */
+.lumen-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.lumen-scroll::-webkit-scrollbar-track { background: transparent; }
+.lumen-scroll::-webkit-scrollbar-thumb {
+  background: var(--journal-warm);
+  border-radius: 9999px;
+}
+.lumen-scroll::-webkit-scrollbar-thumb:hover { background: var(--journal-sepia); }
+
+/* Selection — burgundy on paper. */
+::selection {
+  background: var(--journal-burgundy);
+  color: var(--journal-paper);
+}
+
+/* Syntax highlight tokens for the docs CodeBlock.
+   Colors are tuned for the dark ink code panels. */
+.tok-keyword { color: #D4A574; font-weight: 500; }
+.tok-string { color: #C9B99A; }
+.tok-comment { color: #8B7355; font-style: italic; }
+.tok-tag { color: #E57373; }
+.tok-number { color: #DAA520; }
+.tok-fn { color: #B8A898; }

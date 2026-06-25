@@ -6,19 +6,15 @@ import { cn } from "@/lib/utils"
 import { CodeBlock } from "./code-block"
 
 type ComponentPreviewProps = {
-  /** The preview JSX element. */
   children: React.ReactNode
-  /** The source code shown in the Code tab. */
   code: string
-  /** Optional className for the preview container. */
   className?: string
-  /** Optional alignment of the preview content. */
   align?: "center" | "start"
 }
 
 /**
- * A live preview block with two tabs: Preview and Code.
- * Mirrors the shadcn/ui docs preview component.
+ * Journal-styled preview block with two tabs: Preview and Code.
+ * Preview pane uses the journal-vignette paper effect.
  */
 export function ComponentPreview({
   children,
@@ -40,18 +36,18 @@ export function ComponentPreview({
   }, [code])
 
   return (
-    <div className="group relative overflow-hidden rounded-lg border">
+    <div className="group relative overflow-hidden rounded-sm border border-journal-rule">
       {/* Toolbar */}
-      <div className="flex items-center justify-between border-b bg-muted/40 px-3 py-2">
+      <div className="flex items-center justify-between border-b border-journal-rule bg-journal-paper-dark px-3 py-2">
         <div className="flex items-center gap-1">
           <button
             type="button"
             onClick={() => setTab("preview")}
             className={cn(
-              "inline-flex h-7 items-center gap-1.5 rounded-md px-3 text-xs font-medium transition",
+              "inline-flex h-7 items-center gap-1.5 rounded-sm px-3 font-serif text-xs transition",
               tab === "preview"
-                ? "bg-background text-foreground shadow-sm"
-                : "text-muted-foreground hover:text-foreground"
+                ? "bg-journal-paper text-journal-ink shadow-sm"
+                : "text-journal-sepia hover:text-journal-ink"
             )}
           >
             <Eye className="size-3.5" />
@@ -61,10 +57,10 @@ export function ComponentPreview({
             type="button"
             onClick={() => setTab("code")}
             className={cn(
-              "inline-flex h-7 items-center gap-1.5 rounded-md px-3 text-xs font-medium transition",
+              "inline-flex h-7 items-center gap-1.5 rounded-sm px-3 font-serif text-xs transition",
               tab === "code"
-                ? "bg-background text-foreground shadow-sm"
-                : "text-muted-foreground hover:text-foreground"
+                ? "bg-journal-paper text-journal-ink shadow-sm"
+                : "text-journal-sepia hover:text-journal-ink"
             )}
           >
             <Code className="size-3.5" />
@@ -74,12 +70,12 @@ export function ComponentPreview({
         <button
           type="button"
           onClick={copy}
-          className="inline-flex h-7 items-center gap-1.5 rounded-md px-2.5 text-xs font-medium text-muted-foreground transition hover:text-foreground"
+          className="inline-flex h-7 items-center gap-1.5 rounded-sm px-2.5 font-serif text-xs text-journal-sepia transition hover:text-journal-ink"
           aria-label="Copy source"
         >
           {copied ? (
             <>
-              <Check className="size-3.5 text-emerald-500" />
+              <Check className="size-3.5 text-journal-forest" />
               Copied
             </>
           ) : (
@@ -95,21 +91,11 @@ export function ComponentPreview({
       {tab === "preview" ? (
         <div
           className={cn(
-            "relative flex min-h-[280px] w-full justify-center overflow-x-hidden p-8",
+            "relative flex min-h-[280px] w-full justify-center overflow-x-hidden p-8 bg-journal-paper journal-vignette",
             align === "center" ? "items-center" : "items-start",
             className
           )}
         >
-          {/* Subtle grid background */}
-          <div
-            aria-hidden
-            className="absolute inset-0 -z-10 opacity-[0.04] dark:opacity-[0.08]"
-            style={{
-              backgroundImage:
-                "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
-              backgroundSize: "24px 24px",
-            }}
-          />
           <div className="relative z-10 flex w-full flex-wrap items-center justify-center gap-4">
             {children}
           </div>

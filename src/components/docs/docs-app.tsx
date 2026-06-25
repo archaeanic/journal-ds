@@ -141,7 +141,7 @@ export function DocsApp() {
 
   if (isHome) {
     return (
-      <div className="flex min-h-screen flex-col">
+      <div className="flex min-h-screen flex-col bg-journal-paper">
         <SiteHeader />
         <main className="flex-1">
           <HomePage />
@@ -151,11 +151,11 @@ export function DocsApp() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-journal-paper">
       <SiteHeader />
       <div className="flex flex-1">
         {/* Desktop sidebar */}
-        <aside className="sticky top-14 hidden h-[calc(100vh-3.5rem)] w-64 shrink-0 border-r lg:block">
+        <aside className="sticky top-16 hidden h-[calc(100vh-4rem)] w-64 shrink-0 border-r border-journal-rule bg-journal-paper lg:block">
           <Sidebar />
         </aside>
 
@@ -171,8 +171,10 @@ export function DocsApp() {
 function NotFoundPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-16 text-center">
-      <h1 className="text-6xl font-bold tracking-tight">404</h1>
-      <p className="mt-4 text-lg text-muted-foreground">
+      <h1 className="font-serif text-7xl font-bold tracking-tight text-journal-ink">
+        404
+      </h1>
+      <p className="mt-4 font-serif text-lg text-journal-ink-light">
         Page not found. Use the sidebar to navigate to a docs page.
       </p>
     </div>

@@ -1,44 +1,57 @@
-# Lumen UI
+# Journal Design System
 
-Beautifully designed components that you can copy and paste into your apps. Built with Radix UI, Tailwind CSS, and TypeScript. Open source. Fully accessible.
+A warm, editorial journal-style component library for Tailwind CSS. Built on Radix UI primitives with Playfair Display + Lora typography. Open source. Copy and paste into your apps.
 
 ## Installation
 
 ### 1. Install the package
 
 ```bash
-npm install @lumen-ui/react
+npm install @journal-ds/react
 # or
-pnpm add @lumen-ui/react
+pnpm add @journal-ds/react
 # or
-yarn add @lumen-ui/react
+yarn add @journal-ds/react
 # or
-bun add @lumen-ui/react
+bun add @journal-ds/react
 ```
 
-### 2. Configure your project
+### 2. Import the styles
 
-Add the Lumen UI CSS variables to your global CSS file:
+Add the Journal theme to your global CSS file:
 
 ```css
-@import "@lumen-ui/react/styles";
+@import "@journal-ds/react/styles";
 ```
 
-Or copy the [theme variables](https://lumen-ui.dev/theming) into your own CSS file.
+Or copy the [theme variables](https://journal-ds.dev/docs/theming) into your own CSS file.
 
-### 3. Configure `tailwind.config`
+### 3. Load the fonts
+
+Journal uses three Google Fonts — Lora (body), Playfair Display (headings), and JetBrains Mono (code):
+
+```tsx
+import { Lora, Playfair_Display, JetBrains_Mono } from "next/font/google"
+
+const lora = Lora({ variable: "--font-lora", subsets: ["latin"] })
+const playfair = Playfair_Display({ variable: "--font-playfair", subsets: ["latin"] })
+const mono = JetBrains_Mono({ variable: "--font-geist-mono", subsets: ["latin"] })
+```
+
+### 4. Configure `tailwind.config`
 
 ```ts
 import type { Config } from "tailwindcss"
 
-const config = {
+const config: Config = {
+  darkMode: "class",
   content: [
     "./src/**/*.{ts,tsx}",
-    "./node_modules/@lumen-ui/react/dist/**/*.{js,ts}",
+    "./node_modules/@journal-ds/react/dist/**/*.{js,ts}",
   ],
   theme: { extend: {} },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+}
 
 export default config
 ```
@@ -46,35 +59,36 @@ export default config
 ## Usage
 
 ```tsx
-import { Button } from "@lumen-ui/react"
+import { Button } from "@journal-ds/react"
 
-export default function Example() {
-  return <Button>Click me</Button>
+export default function Entry() {
+  return <Button>New Entry</Button>
 }
 ```
 
 ## CLI
 
-Use the Lumen UI CLI to add components to your project:
+Use the Journal CLI to add components to your project:
 
 ```bash
-npx @lumen-ui/cli add button
+npx @journal-ds/cli add button
 ```
 
 This will copy the component source code directly into your `components/ui` folder, giving you full ownership of the code.
 
 ## Features
 
-- **Accessible** — Built on top of Radix UI primitives.
-- **Themeable** — CSS variables for colors, radii, and spacing.
-- **Composable** — Built with a constrained design system using `cva`.
+- **Editorial Typography** — Playfair Display for headings, Lora for body text. Drop caps and pull quotes baked in.
+- **Warm Palette** — Cream paper, deep ink, burgundy accents, sepia tones, gold highlights.
+- **Paper Textures** — Built-in CSS utilities for lined paper, margin rules, vignettes, spiral-bound notebooks.
+- **Accessible** — Built on Radix UI. Every component follows WAI-ARIA patterns.
+- **Themeable** — CSS variables for all colors, radii, and typography.
 - **Open Source** — MIT licensed. Use it however you like.
-- **Copy & Paste** — Own the code. No vendor lock-in.
 
 ## Documentation
 
-Visit [https://lumen-ui.dev](https://lumen-ui.dev) to view the full documentation.
+Visit [https://journal-ds.dev](https://journal-ds.dev) to view the full documentation.
 
 ## License
 
-MIT © [Lumen UI](https://lumen-ui.dev)
+MIT © [Journal Design System](https://journal-ds.dev)

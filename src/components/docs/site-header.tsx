@@ -12,8 +12,8 @@ export function SiteHeader() {
   const [open, setOpen] = React.useState(false)
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="flex h-14 items-center gap-4 px-4 lg:px-6">
+    <header className="sticky top-0 z-50 w-full border-b border-journal-rule bg-journal-paper/85 backdrop-blur supports-[backdrop-filter]:bg-journal-paper/70">
+      <div className="flex h-16 items-center gap-4 px-4 lg:px-8">
         {/* Mobile menu */}
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
@@ -26,21 +26,23 @@ export function SiteHeader() {
               <Menu className="size-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-72 p-0">
+          <SheetContent side="left" className="w-72 p-0 border-journal-rule">
             <SheetTitle className="sr-only">Navigation</SheetTitle>
             <Sidebar onNavigate={() => setOpen(false)} />
           </SheetContent>
         </Sheet>
 
         {/* Logo + brand */}
-        <Link to="/" className="flex items-center gap-2">
-          <LumenLogo className="size-6" />
-          <span className="text-base font-semibold tracking-tight">
-            Lumen UI
-          </span>
-          <span className="hidden rounded bg-muted px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground sm:inline">
-            v1.0
-          </span>
+        <Link to="/" className="flex items-center gap-3 group">
+          <JournalLogo className="size-8 text-journal-burgundy transition-transform group-hover:rotate-3" />
+          <div className="flex flex-col leading-none">
+            <span className="font-serif text-lg font-bold text-journal-ink tracking-tight">
+              Journal
+            </span>
+            <span className="journal-eyebrow text-[9px] mt-0.5">
+              Design System
+            </span>
+          </div>
         </Link>
 
         <div className="ml-auto flex items-center gap-1">
@@ -48,12 +50,12 @@ export function SiteHeader() {
           <Button
             variant="ghost"
             size="sm"
-            className="hidden h-9 gap-2 text-muted-foreground md:inline-flex"
+            className="hidden h-9 gap-2 text-journal-ink-light md:inline-flex hover:text-journal-ink"
             aria-label="Search documentation"
           >
             <Search className="size-4" />
-            <span className="text-sm">Search...</span>
-            <kbd className="ml-4 hidden rounded border bg-muted px-1.5 py-0.5 text-[10px] font-medium lg:inline">
+            <span className="font-serif text-sm">Search...</span>
+            <kbd className="ml-4 hidden rounded border border-journal-rule bg-journal-paper-dark px-1.5 py-0.5 text-[10px] font-medium text-journal-sepia lg:inline">
               ⌘K
             </kbd>
           </Button>
@@ -63,9 +65,10 @@ export function SiteHeader() {
             size="icon"
             asChild
             aria-label="View on GitHub"
+            className="text-journal-ink-light hover:text-journal-ink"
           >
             <a
-              href="https://github.com/lumen-ui/react"
+              href="https://github.com/journal-ds/react"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -80,7 +83,11 @@ export function SiteHeader() {
   )
 }
 
-export function LumenLogo({ className }: { className?: string }) {
+/**
+ * A small journal-style mark: an open book on a circle.
+ * Burgundy on paper. Renders crisp at any size.
+ */
+export function JournalLogo({ className }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 32 32"
@@ -89,24 +96,47 @@ export function LumenLogo({ className }: { className?: string }) {
       className={className}
       aria-hidden
     >
+      {/* Cover */}
       <rect
-        x="4"
+        x="3"
         y="4"
-        width="24"
+        width="26"
         height="24"
-        rx="7"
+        rx="2"
         fill="currentColor"
-        className="text-foreground"
+        opacity="0.12"
       />
-      <circle
-        cx="16"
-        cy="16"
-        r="6"
-        fill="none"
-        stroke="oklch(0.985 0 0)"
-        strokeWidth="2"
+      {/* Page */}
+      <rect
+        x="5"
+        y="6"
+        width="22"
+        height="20"
+        rx="1"
+        fill="var(--journal-paper)"
+        stroke="currentColor"
+        strokeWidth="1.5"
       />
-      <circle cx="16" cy="16" r="2" fill="oklch(0.985 0 0)" />
+      {/* Center binding line */}
+      <line
+        x1="16"
+        y1="6"
+        x2="16"
+        y2="26"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        opacity="0.4"
+      />
+      {/* Lines on left page */}
+      <line x1="8" y1="11" x2="13" y2="11" stroke="currentColor" strokeWidth="1" opacity="0.6" />
+      <line x1="8" y1="14" x2="13" y2="14" stroke="currentColor" strokeWidth="1" opacity="0.6" />
+      <line x1="8" y1="17" x2="13" y2="17" stroke="currentColor" strokeWidth="1" opacity="0.6" />
+      <line x1="8" y1="20" x2="11" y2="20" stroke="currentColor" strokeWidth="1" opacity="0.6" />
+      {/* Lines on right page */}
+      <line x1="19" y1="11" x2="24" y2="11" stroke="currentColor" strokeWidth="1" opacity="0.6" />
+      <line x1="19" y1="14" x2="24" y2="14" stroke="currentColor" strokeWidth="1" opacity="0.6" />
+      <line x1="19" y1="17" x2="24" y2="17" stroke="currentColor" strokeWidth="1" opacity="0.6" />
+      <line x1="19" y1="20" x2="22" y2="20" stroke="currentColor" strokeWidth="1" opacity="0.6" />
     </svg>
   )
 }
