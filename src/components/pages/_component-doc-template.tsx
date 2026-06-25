@@ -2,11 +2,12 @@
 
 import * as React from "react"
 import { Terminal, Package } from "lucide-react"
-import { DocPage, DocSection, P, InlineCode } from "@/components/docs/doc-page"
+import { DocPage, DocSection, P, InlineCode, Callout } from "@/components/docs/doc-page"
 import { CodeBlock } from "@/components/docs/code-block"
 import { ComponentPreview } from "@/components/docs/component-preview"
 import { PropTable, type PropRow } from "@/components/docs/prop-table"
-import { Callout } from "@/components/docs/doc-page"
+import { InstallCommand } from "@/components/docs/install-command"
+import { cn } from "@/lib/utils"
 
 export type ExampleBlock = {
   title?: string
@@ -42,17 +43,18 @@ export type ComponentDocConfig = {
 }
 
 export function ComponentDocPage(config: ComponentDocConfig) {
-  const installCmd =
-    config.installCode ?? `npx @journal-ds/cli add ${config.slug}`
+  const componentName = config.title.replace(/[^A-Za-z]/g, "").replace(/^./, (c) => c.toUpperCase())
+  const cliCommand = config.installCode ?? `npx @journal-ds/cli add ${config.slug}`
+  const npmCommand = `npm install @journal-ds/react`
   const importCode =
     config.importCode ??
-    `import { ${config.title.replace(/[^A-Za-z]/g, "").replace(/^./, (c) => c.toUpperCase())} } from "@journal-ds/react"`
+    `import { ${componentName} } from "@journal-ds/react"`
 
   return (
     <DocPage title={config.title} description={config.description}>
       {/* Intro */}
       {config.intro && (
-        <div className="space-y-4 text-[15px] leading-7 text-muted-foreground">
+        <div className="space-y-4 font-serif text-[15px] leading-[1.8] text-journal-ink-light">
           {config.intro}
         </div>
       )}
@@ -60,11 +62,26 @@ export function ComponentDocPage(config: ComponentDocConfig) {
       {/* Install */}
       <DocSection title="Installation">
         <P>
-          Add the component to your project using the CLI:
+          Add the component to your project with the Journal CLI. This copies
+          the source code into your <InlineCode>components/ui/</InlineCode>{" "}
+          folder — you own the code and can customize every line.
         </P>
-        <CodeBlock code={installCmd} language="bash" className="my-4" />
-        <P>Then import it in your code:</P>
+        <InstallCommand command={cliCommand} />
+
+        <P className="mt-6">
+          Prefer the npm package? Install it and import directly:
+        </P>
+        <CodeBlock code={npmCommand} language="bash" className="my-4" />
         <CodeBlock code={importCode} language="tsx" className="my-4" />
+
+        <Callout type="note" title="Don't have a journal.json yet?">
+          Run <InlineCode>npx @journal-ds/cli init</InlineCode> first to set up
+          your path aliases and theme. See the{" "}
+          <a href="#/docs/cli" className="text-journal-burgundy underline underline-offset-4">
+            CLI docs
+          </a>{" "}
+          for details.
+        </Callout>
       </DocSection>
 
       {/* Primary preview */}
@@ -77,11 +94,11 @@ export function ComponentDocPage(config: ComponentDocConfig) {
       {/* Usage */}
       <DocSection title="Usage">
         <CodeBlock
-          code={`import { ${config.title.replace(/[^A-Za-z]/g, "").replace(/^./, (c) => c.toUpperCase())} } from "@journal-ds/react"
+          code={`import { ${componentName} } from "@journal-ds/react"
 
 export default function Example() {
   return (
-    ${config.primary.code.split("\n")[0].startsWith("<") ? config.primary.code.replace(/<[^>]*>/, (m) => m).split("\n").slice(0, 1).join("\n") : `<${config.title.replace(/[^A-Za-z]/g, "").replace(/^./, (c) => c.toUpperCase())} />`}
+    ${primaryCodeSnippet(config.primary.code, componentName)}
   )
 }`}
           language="tsx"
@@ -95,7 +112,7 @@ export default function Example() {
           {config.examples.map((ex, i) => (
             <div key={i} className="my-6">
               {ex.title && (
-                <h3 className="mb-3 text-lg font-semibold tracking-tight">
+                <h3 className="mb-3 font-serif text-lg font-semibold tracking-tight text-journal-ink">
                   {ex.title}
                 </h3>
               )}
@@ -122,12 +139,12 @@ export default function Example() {
       {/* See also */}
       {config.seeAlso && config.seeAlso.length > 0 && (
         <DocSection title="See Also">
-          <ul className="ml-4 list-disc space-y-1 text-muted-foreground">
+          <ul className="ml-4 list-disc space-y-1 font-serif text-journal-ink-light">
             {config.seeAlso.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="text-foreground underline underline-offset-4"
+                  className="text-journal-burgundy underline underline-offset-4"
                 >
                   {link.title}
                 </a>
@@ -143,7 +160,7 @@ export default function Example() {
           href="https://github.com/journal-ds/react/issues"
           target="_blank"
           rel="noopener noreferrer"
-          className="underline"
+          className="text-journal-burgundy underline underline-offset-4"
         >
           GitHub issues
         </a>{" "}
@@ -151,4 +168,17 @@ export default function Example() {
       </Callout>
     </DocPage>
   )
+}
+
+/**
+ * Extract a clean first-line snippet from the preview code for the Usage example.
+ * Falls back to a self-closing tag if the code doesn't start with JSX.
+ */
+function primaryCodeSnippet(code: string, componentName: string): string {
+  const firstLine = code.split("\n")[0]
+  if (firstLine.trim().startsWith("<")) {
+    // Take the first JSX tag only.
+    return firstLine.trim()
+  }
+  return `<${componentName} />`
 }

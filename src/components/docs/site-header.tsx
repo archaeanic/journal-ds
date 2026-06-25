@@ -6,16 +6,19 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 import { ThemeToggle } from "./theme-toggle"
 import { Sidebar } from "./sidebar"
+import { SearchDialog } from "./search-dialog"
 import { Link } from "@/lib/router"
 
 export function SiteHeader() {
-  const [open, setOpen] = React.useState(false)
+  const [navOpen, setNavOpen] = React.useState(false)
+  const [searchOpen, setSearchOpen] = React.useState(false)
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-journal-rule bg-journal-paper/85 backdrop-blur supports-[backdrop-filter]:bg-journal-paper/70">
+      <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
       <div className="flex h-16 items-center gap-4 px-4 lg:px-8">
         {/* Mobile menu */}
-        <Sheet open={open} onOpenChange={setOpen}>
+        <Sheet open={navOpen} onOpenChange={setNavOpen}>
           <SheetTrigger asChild>
             <Button
               variant="ghost"
@@ -28,7 +31,7 @@ export function SiteHeader() {
           </SheetTrigger>
           <SheetContent side="left" className="w-72 p-0 border-journal-rule">
             <SheetTitle className="sr-only">Navigation</SheetTitle>
-            <Sidebar onNavigate={() => setOpen(false)} />
+            <Sidebar onNavigate={() => setNavOpen(false)} />
           </SheetContent>
         </Sheet>
 
@@ -46,18 +49,30 @@ export function SiteHeader() {
         </Link>
 
         <div className="ml-auto flex items-center gap-1">
-          {/* Search button — non-functional visual placeholder. */}
+          {/* Search trigger — opens the dialog */}
           <Button
             variant="ghost"
             size="sm"
             className="hidden h-9 gap-2 text-journal-ink-light md:inline-flex hover:text-journal-ink"
             aria-label="Search documentation"
+            onClick={() => setSearchOpen(true)}
           >
             <Search className="size-4" />
             <span className="font-serif text-sm">Search...</span>
             <kbd className="ml-4 hidden rounded border border-journal-rule bg-journal-paper-dark px-1.5 py-0.5 text-[10px] font-medium text-journal-sepia lg:inline">
               ⌘K
             </kbd>
+          </Button>
+
+          {/* Mobile search icon button */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden text-journal-ink-light hover:text-journal-ink"
+            aria-label="Search"
+            onClick={() => setSearchOpen(true)}
+          >
+            <Search className="size-5" />
           </Button>
 
           <Button

@@ -85,6 +85,20 @@ This will copy the component source code directly into your `components/ui` fold
 - **Themeable** — CSS variables for all colors, radii, and typography.
 - **Open Source** — MIT licensed. Use it however you like.
 
+## Peer Dependencies
+
+- `react` ≥ 18
+- `react-dom` ≥ 18
+- `react-hook-form` ≥ 7 — **optional**, only required if you use the `Form` component
+
+```bash
+# If you use the Form component:
+npm install react-hook-form
+
+# If you use Form with schema validation (shown in docs examples):
+npm install react-hook-form @hookform/resolvers zod
+```
+
 ## Documentation
 
 Visit [https://journal-ds.dev](https://journal-ds.dev) to view the full documentation.

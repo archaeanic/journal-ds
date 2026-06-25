@@ -1,0 +1,61 @@
+{
+  "name": "@journal-ds/cli",
+  "version": "1.0.0",
+  "description": "Command-line tool for adding Journal Design System components to your project.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "journal": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "registry",
+    "templates",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^22",
+    "tsup": "^8.3.5",
+    "typescript": "^5"
+  },
+  "keywords": [
+    "cli",
+    "journal",
+    "journal-ds",
+    "design-system",
+    "components",
+    "tailwind",
+    "shadcn",
+    "radix-ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/journal-ds/cli.git"
+  },
+  "homepage": "https://journal-ds.dev",
+  "bugs": {
+    "url": "https://github.com/journal-ds/cli/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
