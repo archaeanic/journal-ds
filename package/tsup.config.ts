@@ -1,11 +1,12 @@
 import { defineConfig } from "tsup"
 export default defineConfig({
-  entry: {
-    index: "src/index.ts",
-    "lib/utils": "src/lib/utils.ts",
-    "styles/globals": "src/styles/globals.css",
-    "components/index": "src/components/index.ts",
-  },
+  entry: [
+    "src/index.ts",
+    "src/lib/utils.ts",
+    "src/styles/globals.css",
+    "src/components/**/*.ts",  // Automatically catches hooks or utility files inside components
+    "src/components/**/*.tsx"  // Automatically catches your actual React components
+  ],
   format: ["esm", "cjs"],
   dts: true,
   splitting: false,
