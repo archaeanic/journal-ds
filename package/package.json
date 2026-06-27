@@ -7,13 +7,18 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "exports": {
+"exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "require": "./dist/index.cjs",
+      "style": "./dist/styles/globals.css" 
     },
-    "./styles": "./dist/styles/globals.css",
+    "./styles": {
+      "style": "./dist/styles/globals.css",
+      "import": "./dist/styles/globals.css",
+      "default": "./dist/styles/globals.css"
+    },
     "./components/*": {
       "types": "./dist/components/*.d.ts",
       "import": "./dist/components/*.js",
@@ -38,7 +43,7 @@
     "dev": "tsup --watch",
     "lint": "eslint src --ext .ts,.tsx",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "bun run build"
+    "prepublishOnly": "pnpm run build"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
@@ -113,11 +118,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/journal-ds/react.git"
+    "url": "https://github.com/archaeanic/journal-ds"
   },
-  "homepage": "https://journal-ds.dev",
+  "homepage": "https://journalds.archaeanic.com",
   "bugs": {
-    "url": "https://github.com/journal-ds/react/issues"
+    "url": "https://github.com/archaeanic/journal-ds/issues"
   },
   "publishConfig": {
     "access": "public"
